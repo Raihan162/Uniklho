@@ -6,7 +6,7 @@ const app = express();
 const Port = process.env.NODEJS_PORT || 8080;
 
 // Import routes
-const Pokemon = require('./server/api/pokemon');
+const Auth = require('./server/api/auth');
 
 dotenv.config();
 
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
     if (statusCode !== 200 && data.isBoom) {
       bodyResponse = data.output.payload;
     }
-    
+
     const response = {
       statusCode,
       bodyResponse
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 });
 
 // Route middlewares
-app.use('/pokemon', Pokemon);
+app.use('/api', Auth);
 
 // Sys ping api 
 app.get('/sys/ping', (req, res) => {
