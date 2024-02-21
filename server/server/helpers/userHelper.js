@@ -35,8 +35,12 @@ const getAlluser = async ({ dataToken }) => {
     }
 };
 
-const updateUser = async ({ id, name, contact, address, subdistrict, city, province }) => {
+const updateUser = async ({ id, name, contact, address, subdistrict, city, province, dataToken }) => {
     try {
+        if (dataToken.role_id !== 1) {
+            return Promise.reject(Boom.unauthorized('You are not authorized'))
+        };
+
         const checkUser = await db.users.findOne({
             where: {
                 id
@@ -64,9 +68,38 @@ const updateUser = async ({ id, name, contact, address, subdistrict, city, provi
         console.log([fileName, 'Update User Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
+};
+
+const deleteUser = async ({ id, dataToken }) => {
+    try {
+        if (dataToken.role_id !== 1) {
+            return Promise.reject(Boom.unauthorized('You are not authorized'));
+        };
+
+        const checkUser = await db.users.findOne({
+            where: {
+                id
+            }
+        })
+        if (!checkUser) {
+            return Promise.reject(Boom.badRequest('User doesn`t exist'));
+        }
+
+        await db.users.destroy({
+            where: {
+                id
+            }
+        });
+
+        return Promise.resolve(true)
+    } catch (error) {
+        console.log([fileName, 'Delete User Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
 }
 
 module.exports = {
     getAlluser,
-    updateUser
+    updateUser,
+    deleteUser
 }
