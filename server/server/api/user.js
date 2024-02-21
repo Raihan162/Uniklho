@@ -24,6 +24,26 @@ const listUser = async (req, res) => {
     }
 };
 
+const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, contact, address, subdistrict, city, province } = req.body;
+
+        // Validation.updateUser({ name, contact, address, subdistrict, city, province })
+
+        const response = await UserHelper.updateUser({ id, name, contact, address, subdistrict, city, province });
+
+        return res.send({
+            message: 'Update User Success',
+            response
+        })
+    } catch (error) {
+        console.log([fileName, 'Update User API', 'ERROR'], { info: `${error}` });
+        return res.send(GeneralHelper.errorResponse(error));
+    }
+}
+
 Router.get('/list', Middleware.validateToken, listUser);
+Router.patch('/update/:id', updateUser)
 
 module.exports = Router;

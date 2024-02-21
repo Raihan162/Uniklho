@@ -35,6 +35,38 @@ const getAlluser = async ({ dataToken }) => {
     }
 };
 
+const updateUser = async ({ id, name, contact, address, subdistrict, city, province }) => {
+    try {
+        const checkUser = await db.users.findOne({
+            where: {
+                id
+            }
+        });
+        if (!checkUser) {
+            return Promise.reject(Boom.badRequest('User doesn`t exist'));
+        };
+
+        await db.users.update({
+            name: name ? name : checkUser?.name,
+            contact: contact ? contact : checkUser?.contact,
+            address: address ? address : checkUser?.address,
+            subdistrict: subdistrict ? subdistrict : checkUser?.subdistrict,
+            city: city ? city : checkUser?.city,
+            province: province ? province : checkUser?.province
+        }, {
+            where: {
+                id
+            }
+        })
+
+        return Promise.resolve(true)
+    } catch (error) {
+        console.log([fileName, 'Update User Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
+}
+
 module.exports = {
-    getAlluser
+    getAlluser,
+    updateUser
 }
