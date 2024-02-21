@@ -1,18 +1,24 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const Boom = require('boom');
+const cors = require('cors')
+const bodyParser = require('body-parser');
 
 const app = express();
 const Port = process.env.NODEJS_PORT || 8080;
 
 // Import routes
 const Auth = require('./server/api/auth');
+const Product = require('./server/api/product');
+const Category = require('./server/api/category');
 
 dotenv.config();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handling Invalid Input
 app.use((error, req, res, next) => {
@@ -70,6 +76,8 @@ app.use((req, res, next) => {
 
 // Route middlewares
 app.use('/api', Auth);
+app.use('/api/product', Product);
+app.use('/api/category', Category);
 
 // Sys ping api 
 app.get('/sys/ping', (req, res) => {
