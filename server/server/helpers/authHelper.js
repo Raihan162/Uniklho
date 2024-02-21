@@ -91,6 +91,7 @@ const login = async ({ email, password }) => {
 
         const token = __generateToken({
             id: checkAccount.id,
+            role_id: checkAccount.role_id,
             role: checkAccount.role.name
         })
 
