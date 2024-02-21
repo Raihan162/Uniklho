@@ -43,8 +43,24 @@ const addProductValidation = (data) => {
     };
 };
 
+const updateUser = (data) => {
+    const schema = Joi.object({
+        name: Joi.string(),
+        contact: Joi.number().min(10),
+        address: Joi.string(),
+        subdistrict: Joi.string(),
+        city: Joi.string(),
+        province: Joi.string()
+    });
+
+    if (schema.validate(data).error) {
+        throw Boom.badRequest(schema.validate(data.error));
+    };
+}
+
 module.exports = {
     registerValidation,
     loginValidation,
-    addProductValidation
+    addProductValidation,
+    updateUser
 };
