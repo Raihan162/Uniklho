@@ -24,6 +24,12 @@ module.exports = {
       image_url: {
         type: Sequelize.STRING
       },
+      image_public_id: {
+        type: Sequelize.STRING
+      },
+      category_id: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
