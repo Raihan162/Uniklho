@@ -57,60 +57,82 @@ const getAllProduct = async () => {
     }
 };
 
-const updateProduct = async () => {
+const updateProduct = async ({ id, name, description, price, stock, category_id, img, dataToken }) => {
     try {
+        const t = await sequelize.transaction()
+        if (dataToken?.role_id !== 1) {
+            return Promise.reject(Boom.unauthorized('You are not authorized'))
+        };
 
+        const checkProduct = await db.products.findOne({
+            where: {
+                id
+            }
+        });
+        if (!checkProduct) {
+            return Promise.reject(Boom.badRequest('Product doesn`t exist'));
+        };
+
+        if (img) {
+            await cloudinaryDeleteImg(checkProduct?.image_public_id, 'image')
+        };
+
+        let imageResult = await uploadToCloudinary(img.image_url[0], 'image')
+
+        await db.products.update({
+            name: name ? name : checkProduct?.name,
+            description: description ? description : checkProduct?.description,
+            price: price ? price : checkProduct?.price,
+            stock: stock ? stock : checkProduct?.stock,
+            image_url: img ? imageResult?.url : checkProduct?.image_url,
+            image_public_id: img ? imageResult?.public_id : checkProduct?.image_public_id,
+            category_id: category_id ? category_id : checkProduct?.category_id
+        }, {
+            where: {
+                id
+            }
+        }, { transaction: t })
+
+        await t.commit();
+        return Promise.resolve(true);
     } catch (error) {
+        await t.rollback();
         console.log([fileName, 'Update Product Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
 };
 
-const deleteProduct = async () => {
+const deleteProduct = async ({ id, dataToken }) => {
     try {
+        if (dataToken.role_id !== 1) {
+            return Promise.reject(Boom.unauthorized('You are not authorized'))
+        };
 
+        const checkProduct = await db.products.findOne({
+            where: {
+                id
+            }
+        });
+        if (!checkProduct) {
+            return Promise.reject(Boom.badRequest('Product doesn`t exist'))
+        };
+
+        await db.products.destroy({
+            where: {
+                id
+            }
+        });
+
+        return Promise.resolve(true);
     } catch (error) {
         console.log([fileName, 'Delete Product Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
 };
 
-// START WISHLIST
-const addToWishlist = () => {
-    try {
-
-    } catch (error) {
-        console.log([fileName, 'Add to Wishlist Product Helpers', 'ERROR'], { info: `${error}` });
-        return Promise.reject(GeneralHelper.errorResponse(error));
-    }
-};
-
-const deleteFromWishlist = async () => {
-    try {
-
-    } catch (error) {
-        console.log([fileName, 'Delete Product From Wishlist Helpers', 'ERROR'], { info: `${error}` });
-        return Promise.reject(GeneralHelper.errorResponse(error));
-    }
-};
-// END WISHLIST
-
-// START CATEGORY
-const addCategory = async () => {
-    try {
-
-    } catch (error) {
-        console.log([fileName, 'Add Category Helpers', 'ERROR'], { info: `${error}` });
-        return Promise.reject(GeneralHelper.errorResponse(error));
-    }
-}
-
 module.exports = {
     addProduct,
     getAllProduct,
     updateProduct,
-    deleteProduct,
-    addToWishlist,
-    deleteFromWishlist,
-    addCategory
+    deleteProduct
 }
