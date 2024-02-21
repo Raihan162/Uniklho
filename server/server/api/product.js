@@ -80,9 +80,9 @@ const updateProduct = async (req, res) => {
     }
 }
 
-Router.post('/add', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, addProduct);
+Router.post('/admin/add', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, addProduct);
 Router.get('/list', getAllProduct);
-Router.delete('/delete/:id', Middleware.validateToken, deleteProduct);
-Router.patch('/update/:id', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, updateProduct);
+Router.delete('/admin/delete/:id', Middleware.validateToken, deleteProduct);
+Router.patch('/admin/update/:id', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, updateProduct);
 
 module.exports = Router;

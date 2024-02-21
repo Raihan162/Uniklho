@@ -71,9 +71,9 @@ const updateCategory = async (req, res) => {
     }
 }
 
-Router.post('/add', Middleware.validateToken, addCategory)
+Router.post('/admin/add', Middleware.validateToken, addCategory)
 Router.get('/list', getAllCategory);
-Router.delete('/delete/:id', Middleware.validateToken, deleteCategory);
-Router.patch('/update/:id', Middleware.validateToken, updateCategory);
+Router.delete('/admin/delete/:id', Middleware.validateToken, deleteCategory);
+Router.patch('/admin/update/:id', Middleware.validateToken, updateCategory);
 
 module.exports = Router;
