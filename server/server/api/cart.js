@@ -24,6 +24,41 @@ const addToCart = async (req, res) => {
     }
 };
 
+const deleteCart = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { dataToken } = req.body;
+
+        const response = await CartHelper.deleteCart({ id, dataToken });
+
+        return res.send({
+            message: 'Delete Cart Success',
+            response
+        });
+    } catch (error) {
+        console.log([fileName, 'Delete Cart API', 'ERROR'], { info: `${error}` });
+        return res.send(GeneralHelper.errorResponse(error));
+    }
+};
+
+const getDataCart = async (req, res) => {
+    try {
+        const { dataToken } = req.body;
+
+        const response = await CartHelper.getCart({ dataToken });
+
+        return res.send({
+            message: 'Get Cart Success',
+            response
+        });
+    } catch (error) {
+        console.log([fileName, 'Get Cart API', 'ERROR'], { info: `${error}` });
+        return res.send(GeneralHelper.errorResponse(error));
+    }
+}
+
 Router.post('/add', Middleware.validateToken, addToCart);
+Router.delete('/delete/:id', Middleware.validateToken, deleteCart);
+Router.get('/list', Middleware.validateToken, getDataCart);
 
 module.exports = Router;
