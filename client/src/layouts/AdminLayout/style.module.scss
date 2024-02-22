@@ -1,0 +1,13 @@
+@import '../../styles/base.scss';
+
+.buttonContainer {
+    @include directionY;
+    gap: 10px;
+    margin-top: 10px;
+
+    .navTitle {
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 5px;
+    }
+}
