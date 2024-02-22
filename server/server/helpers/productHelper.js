@@ -44,7 +44,12 @@ const addProduct = async ({ dataToken, name, description, price, stock, category
 const getAllProduct = async () => {
     try {
         const response = await db.products.findAll({
-            include: { model: db.category },
+            include: {
+                model: db.category,
+                attributes: {
+                    exclude: ['id', 'createdAt', 'updatedAt']
+                }
+            },
             attributes: {
                 exclude: ['createdAt', 'updatedAt']
             }
