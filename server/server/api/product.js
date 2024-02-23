@@ -13,6 +13,8 @@ const addProduct = async (req, res) => {
     try {
         const { dataToken, data } = req.body;
         const img = req.files;
+        console.log(data, '<<<<DATA');
+        console.log(img, '<<<<< IMG')
 
         const { name, description, price, stock, category_id } = JSON.parse(data)
 

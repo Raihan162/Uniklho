@@ -1,0 +1,66 @@
+@import '../../../../../styles/base.scss';
+
+.bgModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    box-shadow: 24px;
+    padding: 20px;
+    width: 90%;
+
+    @include apply-at-md-size {
+        width: 700px;
+    }
+
+    @include apply-at-xl-size {
+        width: 800px;
+    }
+}
+
+.imageContainer {
+    @include directionX;
+    align-items: center;
+    gap: 30px;
+
+    .imageProduct {
+        width: 200px;
+        height: auto;
+    }
+
+    .buttonAddImage {
+        height: fit-content;
+    }
+}
+
+.containerInput {
+    width: 100%;
+
+    tr {
+        height: 60px;
+
+        th {
+            text-align: left;
+        }
+    }
+
+    .inputName {
+        width: 100%;
+        // padding: 5px;
+    }
+
+    .inputPcs {
+        width: 30%;
+    }
+}
+
+.containerButton {
+    @include directionX;
+    gap: 20px;
+    margin-top: 20px;
+
+    Button {
+        width: 50%;
+    }
+}

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import classes from './style.module.scss';
+import { PulseLoader } from 'react-spinners';
 
 const Loader = ({ isLoading }) => (
   <div
@@ -11,7 +12,7 @@ const Loader = ({ isLoading }) => (
       [classes.showLoader]: isLoading || false,
     })}
   >
-    <img src="/loader.svg" alt="Loading" />
+    <PulseLoader color="#36d7b7" size={30} />
   </div>
 );
 

@@ -1,0 +1,72 @@
+@import '../../styles/base.scss';
+
+.container {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card {
+    @include directionX;
+
+    // @include apply-at-lg-size {
+    // }
+    width: 80%;
+
+    height: 80vh;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+
+    background-image: url(../../../assets/bgLogin.jpeg);
+    background-position: center;
+    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+        rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.login {
+    background-color: #ffffffda;
+
+    @include apply-at-lg-size {
+        width: 40%;
+    }
+
+    width: 100%;
+    padding: 20px 50px;
+    @include directionY;
+    justify-content: center;
+
+    span {
+        font-size: 36px;
+    }
+
+    .inputContainer {
+        @include directionY;
+        margin-top: 40px;
+        gap: 10px;
+
+        .form {
+            @include directionY;
+            gap: 30px
+        }
+
+        .emailPass {
+            @include directionY;
+            gap: 20px;
+            width: 100%;
+        }
+    }
+}
+
+.bg {
+    width: auto;
+}
+
+.errorMess {
+    color: red;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}

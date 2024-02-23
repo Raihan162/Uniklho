@@ -1,0 +1,1 @@
+export const SET_STEP = 'Register/SET_STEP';

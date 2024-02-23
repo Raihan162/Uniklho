@@ -4,6 +4,7 @@ const CryptoJS = require('crypto-js');
 const GeneralHelper = require('../helpers/generalHelper');
 const Validation = require('../helpers/validationHelper');
 const AuthHelper = require('../helpers/authHelper');
+const { decryptTextPayload } = require('../utils/decryptHelper');
 
 const fileName = 'server/api/auth.js';
 
@@ -27,9 +28,14 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const data = req.body;
 
-        Validation.loginValidation(req.body);
+        const email = decryptTextPayload(data?.email);
+        const password = decryptTextPayload(data?.password);
+        console.log(email, "EMAIL")
+        console.log(password, "PASS")
+
+        Validation.loginValidation({ email, password });
 
         const response = await AuthHelper.login({ email, password });
 

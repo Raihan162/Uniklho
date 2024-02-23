@@ -15,5 +15,5 @@ function* doPing() {
 }
 
 export default function* appSaga() {
-  yield takeLatest(PING, doPing);
+  // yield takeLatest(PING, doPing);
 }

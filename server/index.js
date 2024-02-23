@@ -11,6 +11,8 @@ const Port = process.env.NODEJS_PORT || 8080;
 const Auth = require('./server/api/auth');
 const Product = require('./server/api/product');
 const Category = require('./server/api/category');
+const User = require('./server/api/user');
+const Cart = require('./server/api/cart');
 
 dotenv.config();
 
@@ -78,6 +80,8 @@ app.use((req, res, next) => {
 app.use('/api', Auth);
 app.use('/api/product', Product);
 app.use('/api/category', Category);
+app.use('/api/user', User);
+app.use('/api/cart', Cart)
 
 // Sys ping api 
 app.get('/sys/ping', (req, res) => {

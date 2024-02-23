@@ -1,0 +1,54 @@
+@import '../../../styles/base.scss';
+
+.container {
+    // background-color: red;
+    color: #414141;
+}
+
+.containerInputAdd {
+    width: 100%;
+    gap: 20px;
+    @include directionY;
+    flex-direction: column-reverse;
+    margin-bottom: 20px;
+
+
+    @include apply-at-lg-size {
+        @include directionX;
+        justify-content: space-between;
+
+        .input {
+            width: 50%;
+        }
+    }
+}
+
+.imageProduct {
+    width: 100px;
+    height: auto;
+}
+
+.action {
+    @include directionX;
+
+    .buttonEdit {
+        border: 0;
+        padding: 5px;
+        height: min-content;
+        background-color: rgb(234, 195, 0);
+        color: #FFFFFF;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .buttonDel {
+        border: 0;
+        padding: 5px;
+        height: min-content;
+        background-color: rgb(234, 0, 0);
+        color: #FFFFFF;
+        font-size: 22px;
+        cursor: pointer;
+    }
+};
+

@@ -1,6 +1,5 @@
 const CryptoJS = require('crypto-js');
-require('dotenv').config()
-console.log(process.env.CRYPTO_SECRET, '<<<');
+require('dotenv').config();
 
 const decryptObjectPayload = (token) => {
     try {

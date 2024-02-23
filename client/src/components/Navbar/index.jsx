@@ -12,9 +12,12 @@ import NightsStayIcon from '@mui/icons-material/NightsStay';
 
 import { setLocale, setTheme } from '@containers/App/actions';
 
-import classes from './style.module.scss';
+import Logo from '../../../assets/cart.png'
 
-const Navbar = ({ title, locale, theme }) => {
+import classes from './style.module.scss';
+import { Button } from '@mui/material';
+
+const Navbar = ({ title, locale, theme, login, token }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [menuPosition, setMenuPosition] = useState(null);
@@ -43,22 +46,43 @@ const Navbar = ({ title, locale, theme }) => {
     navigate('/');
   };
 
+  const goToLogin = () => {
+    navigate('/login');
+  };
+
+  const goToRegister = () => {
+    navigate('/register');
+  }
+
   return (
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
-          <img src="/vite.svg" alt="logo" className={classes.logo} />
+          <img src={Logo} alt="logo" className={classes.logo} />
           <div className={classes.title}>{title}</div>
         </div>
         <div className={classes.toolbar}>
-          <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
+          {/* <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
             {theme === 'light' ? <NightsStayIcon /> : <LightModeIcon />}
-          </div>
+          </div> */}
           <div className={classes.toggle} onClick={handleClick}>
             <Avatar className={classes.avatar} src={locale === 'id' ? '/id.png' : '/en.png'} />
             <div className={classes.lang}>{locale}</div>
             <ExpandMoreIcon />
           </div>
+          {
+            login ?
+              null
+              :
+              <>
+                <Button onClick={goToLogin}>
+                  <FormattedMessage id='login' />
+                </Button>
+                <Button onClick={goToRegister} variant='contained'>
+                  <FormattedMessage id='register' />
+                </Button>
+              </>
+          }
         </div>
         <Menu open={open} anchorEl={menuPosition} onClose={handleClose}>
           <MenuItem onClick={() => onSelectLang('id')} selected={locale === 'id'}>
