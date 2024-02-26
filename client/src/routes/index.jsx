@@ -10,6 +10,7 @@ import Category from '@pages/Admin/Category';
 import Transaction from '@pages/Admin/Transaction';
 import User from '@pages/Admin/User';
 import Register from '@pages/Register';
+import ProductDetail from '@pages/ProductDetail';
 
 const routes = [
   {
@@ -17,6 +18,13 @@ const routes = [
     name: 'Home',
     protected: false,
     component: Home,
+    layout: MainLayout,
+  },
+  {
+    path: '/product/detail/:id',
+    name: 'Product Detail',
+    protected: false,
+    component: ProductDetail,
     layout: MainLayout,
   },
   {

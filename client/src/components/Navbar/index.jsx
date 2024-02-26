@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,18 +10,26 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
 
-import { setLocale, setTheme } from '@containers/App/actions';
+import { setLoading, setLocale, setTheme } from '@containers/App/actions';
 
 import Logo from '../../../assets/cart.png'
 
 import classes from './style.module.scss';
 import { Button } from '@mui/material';
+import { jwtDecode } from 'jwt-decode';
+import { setLogin, setToken } from '@containers/Client/actions';
 
 const Navbar = ({ title, locale, theme, login, token }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuPosition, setMenuPosition] = useState(null);
   const open = Boolean(menuPosition);
+  let decodeToken
+
+  if (token) {
+    decodeToken = jwtDecode(token);
+  };
 
   const handleClick = (event) => {
     setMenuPosition(event.currentTarget);
@@ -52,7 +60,17 @@ const Navbar = ({ title, locale, theme, login, token }) => {
 
   const goToRegister = () => {
     navigate('/register');
-  }
+  };
+
+  const handleToLogout = () => {
+    dispatch(setLoading(true));
+    setTimeout(() => {
+      dispatch(setLoading(false))
+      dispatch(setLogin(false));
+      dispatch(setToken(null));
+      navigate('/login');
+    }, 500);
+  };
 
   return (
     <div className={classes.headerWrapper} data-testid="navbar">
@@ -71,17 +89,22 @@ const Navbar = ({ title, locale, theme, login, token }) => {
             <ExpandMoreIcon />
           </div>
           {
-            login ?
+            location.pathname === '/login' || location?.pathname === '/register' ?
               null
               :
-              <>
-                <Button onClick={goToLogin}>
-                  <FormattedMessage id='login' />
-                </Button>
-                <Button onClick={goToRegister} variant='contained'>
-                  <FormattedMessage id='register' />
-                </Button>
-              </>
+              login ?
+                <button onClick={handleToLogout} className={classes.buttonAvatar}>
+                  <Avatar alt={decodeToken?.name} src={`${decodeToken?.photo_profile ? decodeToken?.photo_profile : "/static/images/avatar/1.jpg"}`} />
+                </button>
+                :
+                <>
+                  <Button onClick={goToLogin}>
+                    <FormattedMessage id='login' />
+                  </Button>
+                  <Button onClick={goToRegister} variant='contained'>
+                    <FormattedMessage id='register' />
+                  </Button>
+                </>
           }
         </div>
         <Menu open={open} anchorEl={menuPosition} onClose={handleClose}>

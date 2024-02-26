@@ -5,12 +5,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { selectLogin, selectToken } from '@containers/Client/selectors';
-import { jwtDecode } from 'jwt-decode';
 
-const Client = ({ login, children, token }) => {
+const Client = ({ login, children }) => {
   const navigate = useNavigate();
-  const decodeToken = jwtDecode(token)
-  console.log(decodeToken)
   useEffect(() => {
     if (!login) {
       navigate('/login');
@@ -22,13 +19,11 @@ const Client = ({ login, children, token }) => {
 
 Client.propTypes = {
   login: PropTypes.bool,
-  children: PropTypes.element,
-  token: PropTypes.object
+  children: PropTypes.element
 };
 
 const mapStateToProps = createStructuredSelector({
-  login: selectLogin,
-  token: selectToken
+  login: selectLogin
 });
 
 export default connect(mapStateToProps)(Client);

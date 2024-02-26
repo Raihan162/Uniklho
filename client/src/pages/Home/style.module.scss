@@ -1,1 +1,28 @@
 @import '@styles/base';
+
+.container {
+    padding: 5px 10px;
+
+    @include apply-at-md-size {
+        padding: 20px 50px;
+    }
+}
+
+.containerCard {
+    display: grid;
+    justify-content: center;
+    gap: 30px;
+    grid-template-columns: repeat(1, auto);
+
+    @include apply-at-md-size {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    @include apply-at-lg-size {
+        grid-template-columns: repeat(3, auto);
+    }
+
+    @include apply-at-xxl-size {
+        grid-template-columns: repeat(4, auto);
+    }
+}

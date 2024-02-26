@@ -10,7 +10,16 @@ const fileName = 'server/api/auth.js';
 
 const register = async (req, res) => {
     try {
-        const { name, email, password, contact, address, subdistrict, city, province } = req.body;
+        const data = req.body;
+
+        const name = decryptTextPayload(data?.name);
+        const email = decryptTextPayload(data?.email);
+        const contact = decryptTextPayload(data?.contact);
+        const password = decryptTextPayload(data?.password);
+        const address = decryptTextPayload(data?.address);
+        const subdistrict = decryptTextPayload(data?.subdistrict);
+        const city = decryptTextPayload(data?.city);
+        const province = decryptTextPayload(data?.province);
 
         Validation.registerValidation({ name, email, password, contact, address, subdistrict, city, province });
 

@@ -1,8 +1,12 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material"
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material"
+import { FormattedMessage } from "react-intl"
 
+import classes from './style.module.scss';
 
-const StepOne = () => {
+const StepOne = ({ register, errors, handleClickShowPassword, showPassword }) => {
     return (
-        <div>
+        <div className={classes.emailPass}>
             <div>
                 <TextField
                     {...register('name', { required: true })}

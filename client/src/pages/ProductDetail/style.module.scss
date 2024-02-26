@@ -1,0 +1,67 @@
+@import '../../styles/base.scss';
+
+.container {
+    @include directionX;
+    justify-content: center;
+    padding: 50px;
+}
+
+.containerContent {
+    @include directionX;
+    align-items: start;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: White;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.image {
+    width: 400px;
+    height: auto;
+}
+
+.detailProduct {
+    max-width: 400px;
+    width: 400px;
+    @include directionY;
+    gap: 10px;
+}
+
+.headerDescription {
+    @include directionX;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 10px;
+    padding: 0;
+}
+
+.price {
+    margin: 10px;
+    padding: 0;
+}
+
+.description {
+    margin: 0 10px;
+    text-align: justify;
+}
+
+.buttonIcon {
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.qtyContainer {
+    @include directionX;
+    align-items: center;
+    gap: 10px;
+
+    p {
+        margin: 0;
+        width: 20px;
+        text-align: center;
+    }
+}

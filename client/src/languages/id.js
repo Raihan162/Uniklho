@@ -53,4 +53,6 @@ export default {
   err_subdistrict_required: 'Kecamatan diperlukan',
   err_city_required: 'Kota diperlukan',
   err_province_required: 'Provinsi diperlukan',
+
+  add_to_cart: 'Masukkan ke Keranjang',
 };

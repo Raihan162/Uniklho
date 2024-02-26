@@ -53,4 +53,6 @@ export default {
   err_subdistrict_required: 'Subdistrict is required',
   err_city_required: 'City is requied',
   err_province_required: 'Province is required',
+
+  add_to_cart:'Add to Cart',
 };

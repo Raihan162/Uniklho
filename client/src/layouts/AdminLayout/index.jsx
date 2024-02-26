@@ -17,7 +17,7 @@ import { Button } from '@mui/material';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { RxDashboard } from "react-icons/rx";
 import { BsBoxes } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
@@ -29,6 +29,8 @@ import { selectLocale, selectTheme } from '@containers/App/selectors';
 
 import classes from './style.module.scss'
 import { useNavigate } from 'react-router-dom';
+import { setLogin, setToken } from '@containers/Client/actions';
+import { setLoading } from '@containers/App/actions';
 
 const drawerWidth = 240;
 
@@ -81,6 +83,7 @@ const defaultTheme = createTheme();
 
 const AdminLayout = ({ children, locale, theme, intl: { formatMessage } }) => {
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -108,7 +111,13 @@ const AdminLayout = ({ children, locale, theme, intl: { formatMessage } }) => {
     };
 
     const handleToLogout = () => {
-
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch(setLoading(false))
+            dispatch(setLogin(false));
+            dispatch(setToken(null));
+            navigate('/login');
+        }, 500);
     };
 
     return (

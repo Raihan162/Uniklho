@@ -135,9 +135,35 @@ const deleteProduct = async ({ id, dataToken }) => {
     }
 };
 
+const getDetailProduct = async ({ id }) => {
+    try {
+        const checkProduct = await db.products.findOne({
+            include: {
+                model: db.category,
+                attributes: ['name']
+            },
+            where: {
+                id
+            },
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            }
+        });
+        if (!checkProduct) {
+            return Promise.reject(Boom.badRequest('Product doesn`t exist'));
+        };
+
+        return Promise.resolve(checkProduct)
+    } catch (error) {
+        console.log([fileName, 'Get Detail Product Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
+}
+
 module.exports = {
     addProduct,
     getAllProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getDetailProduct
 }

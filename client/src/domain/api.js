@@ -11,7 +11,10 @@ const urls = {
   productList: 'product/list',
   addProduct: 'product/admin/add',
 
-  login: 'login'
+  addToCart: 'cart/add',
+
+  login: 'login',
+  register: 'register',
 };
 
 export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
@@ -43,3 +46,9 @@ export const getCategory = () => callAPI(urls.categoryList, 'GET');
 export const addProductDomain = (formData) => callAPI(urls.addProduct, 'POST', {}, {}, formData);
 
 export const loginApi = (data) => callAPI(urls.login, 'POST', {}, {}, data);
+
+export const registerApi = (data) => callAPI(urls.register, 'POST', {}, {}, data);
+
+export const getProductDetailApi = (id) => callAPI(`${urls.productList}/${id}`, 'GET');
+
+export const addToCart = (data) => callAPI(urls.addToCart, 'POST', {}, {}, data);

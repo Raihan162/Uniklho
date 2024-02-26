@@ -86,3 +86,13 @@
     font-size: 0.8rem;
   }
 }
+
+.buttonAvatar {
+  @include directionX;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}

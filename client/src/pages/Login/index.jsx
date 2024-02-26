@@ -14,6 +14,7 @@ import { doLogin } from './action';
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectLogin } from '@containers/Client/selectors';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = ({ login }) => {
 
@@ -25,6 +26,7 @@ const Login = ({ login }) => {
         register,
         formState: { errors }
     } = useForm();
+    let decodeToken
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -37,8 +39,13 @@ const Login = ({ login }) => {
             email: encryptPayload(data.email),
             password: encryptPayload(data.password)
         }
-        dispatch(doLogin(encryptData, () => {
-            navigate('/');
+        dispatch(doLogin(encryptData, (data) => {
+            decodeToken = jwtDecode(data);
+            if (decodeToken?.role_id === 2) {
+                navigate('/');
+            } else if (decodeToken?.role_id === 1) {
+                navigate('/admin/dashboard')
+            }
         }))
     };
 
@@ -52,7 +59,9 @@ const Login = ({ login }) => {
         <div className={classes.container}>
             <div className={classes.card}>
                 <div className={classes.login}>
-                    <span>Masuk</span>
+                    <span>
+                        <FormattedMessage id='login' />
+                    </span>
                     <div className={classes.inputContainer}>
                         <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                             <div className={classes.emailPass}>

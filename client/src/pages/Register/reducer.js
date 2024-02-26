@@ -1,11 +1,12 @@
 import { produce } from "immer";
-import { SET_STEP } from "./constant";
+import { SET_REGISTER, SET_STEP } from "./constant";
 
 export const initialState = {
-    step: 1
+    step: 1,
+    register: {}
 };
 
-export const storedKey = ['step'];
+export const storedKey = ['step', 'register'];
 
 const registerReducer = (state = initialState, action) =>
     produce(state, (draft) => {

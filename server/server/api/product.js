@@ -67,9 +67,7 @@ const updateProduct = async (req, res) => {
         const { id } = req.params;
         const { dataToken, data } = req.body;
         const img = req.files;
-        console.log(data, '<<<<<ID')
         const { name, description, price, stock, category_id } = JSON.parse(data)
-
 
         const response = await ProductHelper.updateProduct({ id, name, description, price, stock, category_id, img, dataToken });
         return res.send({
@@ -80,11 +78,28 @@ const updateProduct = async (req, res) => {
         console.log([fileName, 'Update Product API', 'ERROR'], { info: `${error}` });
         return res.send(GeneralHelper.errorResponse(error));
     }
+};
+
+const detailProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const response = await ProductHelper.getDetailProduct({ id })
+
+        return res.send({
+            message: 'Get Detail Product Success',
+            response
+        })
+    } catch (error) {
+        console.log([fileName, 'Get Detail Product API', 'ERROR'], { info: `${error}` });
+        return res.send(GeneralHelper.errorResponse(error));
+    }
 }
 
 Router.post('/admin/add', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, addProduct);
 Router.get('/list', getAllProduct);
 Router.delete('/admin/delete/:id', Middleware.validateToken, deleteProduct);
 Router.patch('/admin/update/:id', uploadMedia.fields([{ name: 'image_url', maxCount: 1 }]), Middleware.validateToken, updateProduct);
+Router.get('/list/:id', detailProduct);
 
 module.exports = Router;

@@ -1,8 +1,11 @@
+import { TextField } from "@mui/material"
+import { FormattedMessage } from "react-intl"
 
+import classes from './style.module.scss';
 
-const StepTwo = () => {
+const StepTwo = ({ register, errors }) => {
     return (
-        <div>
+        <div className={classes.emailPass}>
             <div>
                 <TextField
                     {...register('address', { required: true })}

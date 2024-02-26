@@ -10,7 +10,7 @@ import { selectLogin, selectToken } from '@containers/Client/selectors';
 
 const MainLayout = ({ children, locale, theme, intl: { formatMessage }, login, token }) => (
   <div>
-    <Navbar title={"UrbanCrazeStyle"} locale={locale} theme={theme} login={login} token={token} />
+    <Navbar title={"UnikLho"} locale={locale} theme={theme} login={login} token={token} />
     {children}
   </div>
 );
@@ -28,7 +28,7 @@ MainLayout.propTypes = {
   theme: PropTypes.string,
   intl: PropTypes.object,
   login: PropTypes.bool,
-  token: PropTypes.object
+  token: PropTypes.string
 };
 
 export default injectIntl(connect(mapStateToProps)(MainLayout));

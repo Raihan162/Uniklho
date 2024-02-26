@@ -1,21 +1,52 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
-import { ping } from '@containers/App/actions';
+import classes from './style.module.scss';
+import Card from '@components/Card';
+import { createStructuredSelector } from 'reselect';
+import { selectProduct } from '@pages/Admin/Product/selector';
+import { getProduct } from '@pages/Admin/Product/action';
 
-const Home = () => {
+const Home = ({ product }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(ping());
-  }, [dispatch]);
+    dispatch(getProduct())
+  }, []);
 
   return (
-    <div>
-      <FormattedMessage id="app_greeting" />
+    <div className={classes.container}>
+      <div className={classes.allProduct}>
+        <h2>
+          All Product
+        </h2>
+        <div className={classes.containerCard}>
+          {
+            product?.map((value, index) => {
+              return (
+                <Card key={index} data={value} />
+              )
+            })
+          }
+          {/* <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card /> */}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Home;
+Home.propTypes = {
+  product: PropTypes.array
+};
+
+const mapStateToProps = createStructuredSelector({
+  product: selectProduct
+})
+
+export default connect(mapStateToProps)(Home);

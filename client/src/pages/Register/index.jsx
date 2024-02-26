@@ -14,6 +14,9 @@ import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectLogin } from '@containers/Client/selectors';
+import StepOne from './components/StepOne';
+import StepTwo from './components/StepTwo';
+import { setRegister, setStep } from './action';
 
 const Register = ({ login }) => {
 
@@ -26,26 +29,47 @@ const Register = ({ login }) => {
         formState: { errors }
     } = useForm();
     const currentStep = useSelector((state) => state.register.step);
-    console.log(currentStep)
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const onSubmit = (data) => {
         const encryptData = {
+            name: encryptPayload(data.name),
             email: encryptPayload(data.email),
-            password: encryptPayload(data.password)
+            contact: encryptPayload(data.contact),
+            password: encryptPayload(data.password),
+            address: encryptPayload(data.address),
+            subdistrict: encryptPayload(data.subdistrict),
+            city: encryptPayload(data.city),
+            province: encryptPayload(data.province)
         }
-        console.log(data)
+        dispatch(setRegister(encryptData, () => {
+            dispatch(setStep(1));
+            navigate('/login');
+        }))
     };
 
     const renderedComponent = () => {
-        switch (key) {
-            case value:
-
-                break;
-
+        switch (currentStep) {
+            case 1:
+                return <StepOne register={register} errors={errors} handleClickShowPassword={handleClickShowPassword}
+                    showPassword={showPassword} />
+            case 2:
+                return <StepTwo register={register} errors={errors} />
             default:
                 break;
+        }
+    };
+
+    const handleToLogin = () => {
+        navigate('/login');
+    };
+
+    const handleStep = (data) => {
+        if (data === '+') {
+            dispatch(setStep(currentStep + 1))
+        } else if (data === '-') {
+            dispatch(setStep(currentStep - 1))
         }
     }
 
@@ -60,21 +84,33 @@ const Register = ({ login }) => {
             <div className={classes.card}>
                 <div className={classes.bg}>
                 </div>
-                <div className={classes.login}>
+                <div className={classes.register}>
                     <span>
                         <FormattedMessage id='register' />
                     </span>
                     <div className={classes.inputContainer}>
                         <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-                            <div className={classes.emailPass}>
+                            {
+                                renderedComponent()
+                            }
 
-                            </div>
-
-                            <Button type='submit' variant='contained'>
-                                <FormattedMessage id="register" />
-                            </Button>
+                            {
+                                currentStep === 1 ?
+                                    <Button onClick={() => handleStep('+')} variant='contained'>
+                                        Next
+                                    </Button>
+                                    :
+                                    <>
+                                        <Button onClick={() => handleStep('-')}>
+                                            Back
+                                        </Button>
+                                        <Button type='submit' variant='contained'>
+                                            <FormattedMessage id="register" />
+                                        </Button>
+                                    </>
+                            }
                         </form>
-                        <Button>
+                        <Button onClick={handleToLogin}>
                             <FormattedMessage id="already_have_an_account" />
                         </Button>
                     </div>
