@@ -8,6 +8,8 @@ import Card from '@components/Card';
 import { createStructuredSelector } from 'reselect';
 import { selectProduct } from '@pages/Admin/Product/selector';
 import { getProduct } from '@pages/Admin/Product/action';
+import { setCart } from '@pages/ProductDetail/action';
+import { Toaster } from 'react-hot-toast';
 
 const Home = ({ product }) => {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const Home = ({ product }) => {
   useEffect(() => {
     dispatch(getProduct())
   }, []);
+
+
 
   return (
     <div className={classes.container}>
@@ -30,13 +34,9 @@ const Home = ({ product }) => {
               )
             })
           }
-          {/* <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card /> */}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

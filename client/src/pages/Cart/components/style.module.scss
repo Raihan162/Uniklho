@@ -1,0 +1,39 @@
+@import '../../../styles/base.scss';
+
+.card {
+    background-color: #FFFFFF;
+    @include directionX;
+    justify-content: space-between;
+    align-items: start;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.image {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    object-position: center
+}
+
+.contentCard {
+    @include directionX;
+    gap: 20px;
+}
+
+.description {
+    h4 {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.buttonIcon {
+    cursor: pointer;
+    font-size: 28px;
+}

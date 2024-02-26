@@ -5,6 +5,7 @@ import clientReducer, { storedKey as storedClientState } from '@containers/Clien
 import productReducer, { storedKey as storedProductState } from '@pages/Admin/Product/reducer';
 import registerReducer, { storedKey as storedRegisterState } from '@pages/Register/reducer';
 import productDetailReducer, { storedKey as storedProductDetailState } from '@pages/ProductDetail/reducer';
+import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
 
 import languageReducer from '@containers/Language/reducer';
 
@@ -15,7 +16,8 @@ const storedReducers = {
   client: { reducer: clientReducer, whitelist: storedClientState },
   product: { reducer: productReducer, whitelist: storedProductState },
   register: { reducer: registerReducer, whitelist: storedRegisterState },
-  productDetail: { reducer: productDetailReducer, whitelist: storedProductDetailState }
+  productDetail: { reducer: productDetailReducer, whitelist: storedProductDetailState },
+  cart: { reducer: cartReducer, whitelist: storedCartState }
 };
 
 const temporaryReducers = {

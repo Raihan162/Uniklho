@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -9,17 +9,19 @@ import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { setLoading, setLocale, setTheme } from '@containers/App/actions';
 
 import Logo from '../../../assets/cart.png'
 
 import classes from './style.module.scss';
-import { Button } from '@mui/material';
+import { Badge, Button } from '@mui/material';
 import { jwtDecode } from 'jwt-decode';
 import { setLogin, setToken } from '@containers/Client/actions';
+import { getDataCart } from '@pages/Cart/action';
 
-const Navbar = ({ title, locale, theme, login, token }) => {
+const Navbar = ({ title, locale, theme, login, token, cart }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,6 +56,10 @@ const Navbar = ({ title, locale, theme, login, token }) => {
     navigate('/');
   };
 
+  const goToCart = () => {
+    navigate('/cart');
+  };
+
   const goToLogin = () => {
     navigate('/login');
   };
@@ -72,6 +78,10 @@ const Navbar = ({ title, locale, theme, login, token }) => {
     }, 500);
   };
 
+  useEffect(() => {
+    dispatch(getDataCart())
+  }, [])
+
   return (
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
@@ -83,6 +93,11 @@ const Navbar = ({ title, locale, theme, login, token }) => {
           {/* <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
             {theme === 'light' ? <NightsStayIcon /> : <LightModeIcon />}
           </div> */}
+          <div onClick={goToCart} className={classes.buttonIcon}>
+            <Badge badgeContent={cart?.length} color='error'>
+              <ShoppingCartIcon />
+            </Badge>
+          </div>
           <div className={classes.toggle} onClick={handleClick}>
             <Avatar className={classes.avatar} src={locale === 'id' ? '/id.png' : '/en.png'} />
             <div className={classes.lang}>{locale}</div>

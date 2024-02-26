@@ -11,6 +11,7 @@ import Transaction from '@pages/Admin/Transaction';
 import User from '@pages/Admin/User';
 import Register from '@pages/Register';
 import ProductDetail from '@pages/ProductDetail';
+import Cart from '@pages/Cart';
 
 const routes = [
   {
@@ -25,6 +26,13 @@ const routes = [
     name: 'Product Detail',
     protected: false,
     component: ProductDetail,
+    layout: MainLayout,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    protected: false,
+    component: Cart,
     layout: MainLayout,
   },
   {

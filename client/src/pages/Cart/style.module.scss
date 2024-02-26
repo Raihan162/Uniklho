@@ -1,0 +1,54 @@
+@import '../../styles/base.scss';
+
+.container {
+    @include directionX;
+    justify-content: center;
+}
+
+.contentContainer {
+    width: 90%;
+
+    @include apply-at-xl-size {
+        width: 70%;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+.contentCart {
+    @include directionY;
+
+    @include apply-at-xl-size {
+        @include directionX;
+    }
+
+    gap: 20px;
+
+    .listCart {
+        flex-basis: 65%;
+        @include directionY;
+        gap: 30px;
+    }
+
+    .subTotContainer {
+        flex-basis: 35%;
+        @include directionY;
+        gap: 20px;
+
+        h3 {
+            margin: 0;
+        }
+    }
+}
+
+.subTot {
+    p {
+        margin: 0;
+        padding: 0
+    }
+
+    @include directionX;
+    justify-content: space-between;
+}

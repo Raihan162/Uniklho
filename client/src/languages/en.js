@@ -55,4 +55,6 @@ export default {
   err_province_required: 'Province is required',
 
   add_to_cart:'Add to Cart',
+  cart: 'Cart',
+  continue_to_checkout: 'Continue to Checkout'
 };

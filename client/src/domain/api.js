@@ -12,6 +12,8 @@ const urls = {
   addProduct: 'product/admin/add',
 
   addToCart: 'cart/add',
+  cartList: 'cart/list',
+  cartDelete: 'cart/delete',
 
   login: 'login',
   register: 'register',
@@ -52,3 +54,8 @@ export const registerApi = (data) => callAPI(urls.register, 'POST', {}, {}, data
 export const getProductDetailApi = (id) => callAPI(`${urls.productList}/${id}`, 'GET');
 
 export const addToCart = (data) => callAPI(urls.addToCart, 'POST', {}, {}, data);
+
+export const getDataCartApi = () => callAPI(urls.cartList, 'GET');
+
+export const deleteCartApi = (id) => callAPI(`${urls.cartDelete}/${id}`, 'DELETE');
+

@@ -3,13 +3,24 @@ import defaultImage from '../../../assets/image.png';
 
 import classes from './style.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { setCart } from '@pages/ProductDetail/action';
+import { useDispatch } from 'react-redux';
+import { getDataCart } from '@pages/Cart/action';
 
-const Card = ({ data }) => {
+const Card = ({ data, func }) => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleToDetail = (id) => {
         navigate(`/product/detail/${id}`);
+    };
+
+    const addToCart = () => {
+        dispatch(setCart({ qty: 1, product_id: data?.id }, () => {
+            dispatch(getDataCart())
+        }));
+        // console.log({ qty, product_id: detail?.id })
     };
 
     return (
@@ -28,7 +39,7 @@ const Card = ({ data }) => {
                 <Button onClick={() => handleToDetail(data?.id)}>
                     Detail
                 </Button>
-                <Button variant='contained'>
+                <Button onClick={addToCart} variant='contained'>
                     Add to Cart
                 </Button>
             </div>

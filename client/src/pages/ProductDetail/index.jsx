@@ -9,11 +9,12 @@ import img from '../../../assets/image.png';
 import classes from './style.module.scss';
 import { connect, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getData } from "./action";
+import { getData, setCart } from "./action";
 import { useParams } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectDetail } from "./selector";
 import toast, { Toaster } from "react-hot-toast";
+import { getDataCart } from "@pages/Cart/action";
 
 const ProductDetail = ({ detail }) => {
 
@@ -42,8 +43,10 @@ const ProductDetail = ({ detail }) => {
     }
 
     const addToCart = () => {
-        
-        console.log({ qty, product_id: detail?.id })
+        dispatch(setCart({ qty, product_id: detail?.id }, () => {
+            dispatch(getDataCart())
+        }));
+        // console.log({ qty, product_id: detail?.id })
     };
 
     const addToWishlist = () => {

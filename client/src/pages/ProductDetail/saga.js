@@ -3,6 +3,7 @@ import { addToCart, getProductDetailApi } from "@domain/api";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { GET_DATA, SET_CART } from "./constant";
 import { setData } from "./action";
+import toast from "react-hot-toast";
 
 function* getProductDetail({ id }) {
     yield put(setLoading(true));
@@ -16,11 +17,12 @@ function* getProductDetail({ id }) {
     yield put(setLoading(false));
 };
 
-function* doAddToCart({ data }) {
+function* doAddToCart({ dataCart, cb }) {
     yield put(setLoading(true));
     try {
-        const response = yield call(addToCart, data);
-        console.log(response)
+        const response = yield call(addToCart, dataCart);
+        toast.success(response?.message);
+        cb && cb();
     } catch (error) {
         yield put(setLoading(false));
         toast.error(error?.response?.data?.message)

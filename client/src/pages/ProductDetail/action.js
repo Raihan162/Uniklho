@@ -10,7 +10,8 @@ export const setData = (data) => ({
     data
 });
 
-export const setCart = (dataCart) => ({
+export const setCart = (dataCart, cb) => ({
     type: SET_CART,
-    dataCart
+    dataCart,
+    cb
 })

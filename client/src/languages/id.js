@@ -55,4 +55,6 @@ export default {
   err_province_required: 'Provinsi diperlukan',
 
   add_to_cart: 'Masukkan ke Keranjang',
+  cart: 'Keranjang',
+  continue_to_checkout: 'Lanjut ke Pembayaran'
 };

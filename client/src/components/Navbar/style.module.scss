@@ -34,6 +34,7 @@
 
     .toolbar {
       @include directionX;
+      align-items: center;
       gap: 10px;
 
       .theme {
@@ -95,4 +96,9 @@
   border: 0;
   cursor: pointer;
   border-radius: 50%;
+}
+
+.buttonIcon {
+  cursor: pointer;
+  font-size: 28px;
 }
