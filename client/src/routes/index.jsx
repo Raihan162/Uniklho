@@ -12,6 +12,9 @@ import User from '@pages/Admin/User';
 import Register from '@pages/Register';
 import ProductDetail from '@pages/ProductDetail';
 import Cart from '@pages/Cart';
+import Checkout from '@pages/Checkout';
+import MyOrder from '@pages/MyOrder';
+import Wishlist from '@pages/Wishlist';
 
 const routes = [
   {
@@ -36,10 +39,31 @@ const routes = [
     layout: MainLayout,
   },
   {
+    path: '/checkout',
+    name: 'Checkout',
+    protected: false,
+    component: Checkout,
+    layout: MainLayout,
+  },
+  {
     path: '/login',
     name: 'Login',
     protected: false,
     component: Login,
+    layout: MainLayout,
+  },
+  {
+    path: '/my-order',
+    name: 'My Order',
+    protected: false,
+    component: MyOrder,
+    layout: MainLayout,
+  },
+  {
+    path: '/wishlist',
+    name: 'Wishlist',
+    protected: false,
+    component: Wishlist,
     layout: MainLayout,
   },
   {
