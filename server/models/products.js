@@ -15,16 +15,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'category_id'
       }),
         this.hasMany(models.comments, {
-          foreignKey: 'products_id'
+          foreignKey: 'product_id'
         }),
         this.hasMany(models.cart, {
           foreignKey: 'product_id'
         }),
-        this.hasMany(models.transactions, {
-          foreignKey: 'products_id'
-        }),
         this.hasMany(models.wishlist, {
           foreignKey: 'products_id'
+        }),
+        this.hasMany(models.transaction_details, {
+          foreignKey: 'product_id'
         })
     }
   }

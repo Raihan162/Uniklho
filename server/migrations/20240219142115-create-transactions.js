@@ -5,21 +5,51 @@ module.exports = {
     await queryInterface.createTable('transactions', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       user_id: {
         type: Sequelize.STRING
       },
-      product_id: {
+      receiver_name: {
+        type: Sequelize.STRING
+      },
+      receiver_contact: {
+        type: Sequelize.STRING
+      },
+      receiver_address: {
+        type: Sequelize.STRING
+      },
+      receiver_province: {
+        type: Sequelize.STRING
+      },
+      receiver_city: {
+        type: Sequelize.STRING
+      },
+      courier: {
+        type: Sequelize.STRING
+      },
+      service: {
+        type: Sequelize.STRING
+      },
+      cost: {
         type: Sequelize.INTEGER
       },
-      qty: {
+      payment_method: {
+        type: Sequelize.STRING
+      },
+      status_midtrans: {
+        type: Sequelize.STRING
+      },
+      total_cost: {
         type: Sequelize.INTEGER
       },
-      status: {
-        type: Sequelize.BOOLEAN
+      token_midtrans: {
+        type: Sequelize.STRING
+      },
+      status_id: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
