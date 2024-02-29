@@ -20,6 +20,7 @@ const register = async (req, res) => {
         const subdistrict = decryptTextPayload(data?.subdistrict);
         const city = decryptTextPayload(data?.city);
         const province = decryptTextPayload(data?.province);
+        console.log({ name, email, password, contact, address, subdistrict, city, province })
 
         Validation.registerValidation({ name, email, password, contact, address, subdistrict, city, province });
 
@@ -41,8 +42,6 @@ const login = async (req, res) => {
 
         const email = decryptTextPayload(data?.email);
         const password = decryptTextPayload(data?.password);
-        console.log(email, "EMAIL")
-        console.log(password, "PASS")
 
         Validation.loginValidation({ email, password });
 

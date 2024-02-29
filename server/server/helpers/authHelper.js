@@ -78,23 +78,24 @@ const login = async ({ email, password }) => {
                 exclude: ['createdAt', 'updatedAt']
             }
         });
+        console.log(checkAccount)
 
         if (_.isEmpty(checkAccount)) {
             return Promise.reject(Boom.badRequest('Email not registered'))
         };
 
-        const isPassMatched = __comparePassword(password, checkAccount.password);
+        const isPassMatched = __comparePassword(password, checkAccount?.password);
 
         if (!isPassMatched) {
             return Promise.reject(Boom.badRequest('Wrong password'));
         };
 
         const token = __generateToken({
-            id: checkAccount.id,
-            name: checkAccount.name,
-            photo_profile: checkAccount.photo_profile,
-            role_id: checkAccount.role_id,
-            role: checkAccount.role.name
+            id: checkAccount?.id,
+            name: checkAccount?.name,
+            photo_profile: checkAccount?.photo_profile,
+            role_id: checkAccount?.role_id,
+            role: checkAccount?.role.name
         })
 
         return Promise.resolve({ token })

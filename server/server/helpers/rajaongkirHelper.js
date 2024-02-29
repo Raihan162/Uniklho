@@ -2,37 +2,56 @@ const Boom = require('boom');
 const _ = require('lodash');
 require('dotenv').config();
 
-const fileName = 'server/helpers/cartHelpers.js';
+const fileName = 'server/helpers/rajaongkirHelper.js';
 
 const GeneralHelper = require('../helpers/generalHelper');
 const { default: axios } = require('axios');
 
-const getProvince = async ({ key }) => {
+const getProvince = async () => {
     try {
         const response = await axios.get(`${process.env.RAJAONGKIR_URL}/province`, {
             headers: {
-                "key": key
+                "key": process.env.RAJAONGKIR_APIKEY
             }
-        })
-        return Promise.resolve(response);
+        });
+
+        return Promise.resolve(response?.data?.rajaongkir?.results);
     } catch (error) {
         console.log([fileName, 'Get Province Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
 };
 
-const getCity = async () => {
+const getCity = async ({province_id}) => {
     try {
-        return Promise.resolve(response);
+        const response = await axios.get(`${process.env.RAJAONGKIR_URL}/city?province=${province_id}`, {
+            headers: {
+                "key": process.env.RAJAONGKIR_APIKEY
+            }
+        });
+
+        return Promise.resolve(response?.data?.rajaongkir?.results);
     } catch (error) {
         console.log([fileName, 'Get City Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
 };
 
-const getOngkir = async () => {
+const getOngkir = async ({destination,courier}) => {
     try {
-        return Promise.resolve(response);
+        const response = await axios.post(`${process.env.RAJAONGKIR_URL}/cost`,{
+            origin:'152',
+            destination: destination,
+            weight: 2000,
+            courier: courier
+        }, {
+            headers: {
+                key: process.env.RAJAONGKIR_APIKEY,
+                'content-type': 'application/x-www-form-urlencoded'
+            }
+        });
+
+        return Promise.resolve(response?.data?.rajaongkir?.results[0]?.costs);
     } catch (error) {
         console.log([fileName, 'Get Ongkir Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
