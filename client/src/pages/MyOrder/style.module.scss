@@ -1,0 +1,52 @@
+@import '../../styles/base.scss';
+
+.container {
+    padding: 5px 20px;
+}
+
+.containerCard {
+    @include directionY;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.top {
+    @include directionX;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        margin: 0;
+        margin-bottom: 15px;
+    }
+}
+
+.accordion {
+    margin-top: 10px
+}
+
+.detailCard{
+    @include directionX;
+    align-items: center;
+    gap: 20px;
+    margin: 10px 0;
+    
+    .imageDetail {
+        width: 100px;
+        height: auto;
+    }
+
+    .qtyDetail {
+        width: 50px;
+        text-align: center;
+    }
+
+    .nameDetail {
+        width: 70%;
+    }
+}
