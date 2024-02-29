@@ -11,7 +11,7 @@ import { selectCart } from '@pages/Cart/selector';
 
 const MainLayout = ({ children, locale, theme, intl: { formatMessage }, login, token, cart }) => (
   <div>
-    <Navbar title={"UnikLho"} locale={locale} theme={theme} login={login} token={token} cart={cart} />
+    <Navbar title="UnikLho" locale={locale} theme={theme} login={login} token={token} cart={cart} />
     {children}
   </div>
 );
