@@ -14,6 +14,8 @@ const Category = require('./server/api/category');
 const User = require('./server/api/user');
 const Cart = require('./server/api/cart');
 const RajaOngkir = require('./server/api/rajaongkir');
+const Transaction = require('./server/api/transaction');
+const Wishlist = require('./server/api/wishlist');
 
 dotenv.config();
 
@@ -84,6 +86,8 @@ app.use('/api/category', Category);
 app.use('/api/user', User);
 app.use('/api/cart', Cart);
 app.use('/api/rajaongkir', RajaOngkir);
+app.use('/api/transaction', Transaction);
+app.use('/api/wishlist', Wishlist);
 
 // Sys ping api 
 app.get('/sys/ping', (req, res) => {
