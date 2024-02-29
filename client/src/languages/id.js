@@ -56,5 +56,19 @@ export default {
 
   add_to_cart: 'Masukkan ke Keranjang',
   cart: 'Keranjang',
-  continue_to_checkout: 'Lanjut ke Pembayaran'
+  continue_to_checkout: 'Lanjut ke Pembayaran',
+
+  checkout:'Pembayaran',
+  my_information: 'Informasi Saya',
+  courier: 'Kurir',
+  choose_courier: 'Pilih Kurir',
+  service: 'Layanan',
+
+  my_order: 'Pesanan Saya',
+  receiver_name: 'Nama Penerima',
+  receiver_contact: 'Kontak Penerima',
+  receiver_address: 'Alamat Penerima',
+
+  all_product: 'Semua Produk',
+  wishlist: 'Daftar Keinginan',
 };

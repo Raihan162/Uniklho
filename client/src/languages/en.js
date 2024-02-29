@@ -56,5 +56,19 @@ export default {
 
   add_to_cart:'Add to Cart',
   cart: 'Cart',
-  continue_to_checkout: 'Continue to Checkout'
+  continue_to_checkout: 'Continue to Checkout',
+
+  checkout:'Checkout',
+  my_information: 'My Information',
+  courier: 'Courier',
+  choose_courier: 'Choose Courier',
+  service: 'Service',
+
+  my_order: 'My Order',
+  receiver_name: 'Recevier Name',
+  receiver_contact: 'Recevier Contact',
+  receiver_address: 'Recevier Address',
+
+  all_product: 'All Product',
+  wishlist: 'Wishlist',
 };
