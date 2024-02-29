@@ -6,6 +6,9 @@ import loginSaga from '@pages/Login/saga';
 import registerSaga from '@pages/Register/saga';
 import productDetailSaga from '@pages/ProductDetail/saga';
 import cartSaga from '@pages/Cart/saga';
+import checkoutSaga from '@pages/Checkout/saga';
+import myorderSaga from '@pages/MyOrder/saga';
+import wishlistSaga from '@pages/Wishlist/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,6 +17,9 @@ export default function* rootSaga() {
     loginSaga(),
     registerSaga(),
     productDetailSaga(),
-    cartSaga()
+    cartSaga(),
+    checkoutSaga(),
+    myorderSaga(),
+    wishlistSaga()
   ]);
 }

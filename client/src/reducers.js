@@ -6,6 +6,9 @@ import productReducer, { storedKey as storedProductState } from '@pages/Admin/Pr
 import registerReducer, { storedKey as storedRegisterState } from '@pages/Register/reducer';
 import productDetailReducer, { storedKey as storedProductDetailState } from '@pages/ProductDetail/reducer';
 import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
+import checkoutReducer, { storedKey as storedCheckoutState } from '@pages/Checkout/reducer';
+import myorderReducer, {storedKey as storedMyOrderState } from '@pages/MyOrder/reducer';
+import wishlistReducer, { storedKey as storedWishlistState} from '@pages/Wishlist/reducer';
 
 import languageReducer from '@containers/Language/reducer';
 
@@ -17,7 +20,10 @@ const storedReducers = {
   product: { reducer: productReducer, whitelist: storedProductState },
   register: { reducer: registerReducer, whitelist: storedRegisterState },
   productDetail: { reducer: productDetailReducer, whitelist: storedProductDetailState },
-  cart: { reducer: cartReducer, whitelist: storedCartState }
+  cart: { reducer: cartReducer, whitelist: storedCartState },
+  checkout: { reducer: checkoutReducer, whitelist: storedCheckoutState },
+  myOrder: { reducer: myorderReducer, whitelist: storedMyOrderState },
+  wishlist: { reducer: wishlistReducer, whitelist: storedWishlistState }
 };
 
 const temporaryReducers = {
