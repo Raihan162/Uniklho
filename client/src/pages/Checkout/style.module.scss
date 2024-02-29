@@ -1,0 +1,45 @@
+@import '../../styles/base.scss';
+
+.container{
+    padding: 20px;
+    margin: auto;
+}
+
+.contentContainer{
+    @include directionX;
+}
+
+.subtotal{
+    @include directionX;
+    justify-content: space-between;
+
+    p{
+        margin: 0;
+    }
+}
+
+.boxRight{
+    width: 30%;
+}
+
+.ongkir{
+    @include directionX;
+    justify-content: space-between;
+
+    p{
+        margin: 0;
+    }
+}
+
+.total{
+    @include directionX;
+    justify-content: space-between;
+
+    p{
+        margin: 0;
+    }
+}
+
+.label{
+    font-weight: 600;
+}
