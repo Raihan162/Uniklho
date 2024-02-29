@@ -1,0 +1,37 @@
+@import '../../styles/base.scss';
+
+.card {
+    background-color: #FFFFFF;
+    @include directionY;
+    width: 250px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.imgProduct {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 250px;
+}
+
+.description {
+    margin-top: 10px;
+
+    h4 {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        margin: 5px 0px;
+        padding: 0;
+    }
+}
+
+.buttonContainer {
+    @include directionX;
+    justify-content: space-between;
+    margin-top: 10px;
+}
