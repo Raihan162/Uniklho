@@ -154,7 +154,6 @@ const createTransaction = async ({ name, contact, address, province, city, couri
                 token: response,
                 transID: createTrans?.id
             };
-            console.log(dataResponse, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,,')
     
             return dataResponse;
         });

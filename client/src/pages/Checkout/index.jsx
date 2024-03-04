@@ -82,7 +82,6 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
         const cost = encryptPayload(information?.cost);
         const cart = encryptPayload(information?.cart);
         dispatch(setTransaction({ name, contact, address, province,  city, courier, service, cost, cart}, ({token,transID}) => {
-            console.log({token,transID})
             window.snap.pay(token, {
                 onSuccess: function(result){
                     toast.success('Transaction success')
@@ -222,7 +221,7 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
                                         <em><FormattedMessage id="service"/></em>
                                     </MenuItem>
                                     {
-                                        service?.cost?.map((value,index) => {
+                                        serviceCourier?.map((value,index) => {
                                             return (
                                                 <MenuItem key={index} value={`${value?.service},${value?.cost[0]?.value}`}>{value?.service} ({value?.cost[0]?.etd} Day)</MenuItem>
                                             )
@@ -240,7 +239,7 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
                         </div>
                         <div className={classes.ongkir}>
                             <p className={classes.label}>Ongkir</p>
-                            <p>Rp {information?.cost?.toLocaleString()}</p>
+                            <p>Rp {information?.cost.toLocaleString()}</p>
                         </div>
                         <div className={classes.total}> 
                             <p className={classes.label}>Total</p>
