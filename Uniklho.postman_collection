@@ -1,0 +1,1031 @@
+{
+	"info": {
+		"_postman_id": "aa73f901-851b-46ab-8d7f-6cf100fb7bd5",
+		"name": "Final Project Phincon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23963006"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "[POST] Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"User Test\",\r\n    \"email\":\"user_test@gmail.com\",\r\n    \"password\":\"abcde123123\",\r\n    \"contact\":\"08123456789\",\r\n    \"address\":\"Jalan Komputer No.1\",\r\n    \"subdistrict\":\"Andir\",\r\n    \"city\":\"Kota Bandung\",\r\n    \"province\":\"Jawa Barat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"haloAdmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[POST] Login Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"haloAdmin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "[POST] Login User 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"user1@gmail.com\",\r\n    \"password\":\"abcde123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "[POST] Login User 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"user2@gmail.com\",\r\n    \"password\":\"abcde123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "[POST] Add Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYjQ1ZDQ0LTlkZjgtNDFiNy1iMDc1LWEwMzY4Y2RkOGRhOSIsIm5hbWUiOiJBZG1pbiIsInBob3RvX3Byb2ZpbGUiOm51bGwsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwOTAwMjYzNSwiZXhwIjoxNzA5MDg5MDM1fQ.J4rpTSMeelsOw1CjZjzoZhjyw_bz0L6U99S9gMecmRo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image_url",
+											"type": "file",
+											"src": "/C:/Users/M RAIHAN ARRAFI/Downloads/t-shirt2.jpg"
+										},
+										{
+											"key": "data",
+											"value": "{\"name\":\"T-Shirt 3\",\"description\":\"T-shirts in lightweight cotton jersey with a V-neck and a straight-cut hem. Slim fit that hugs the contours of your body, creating a fitted silhouette.\",\"price\":320000,\"stock\":5,\"category_id\":1}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/product/admin/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"product",
+										"admin",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[DELETE] Delete Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/product/admin/delete/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"product",
+										"admin",
+										"delete",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[PATCH] Update Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image_url",
+											"type": "file",
+											"src": "/D:/PhinCon/bootcamp/Final-Project/Assets/t-shirts_1.jpg"
+										},
+										{
+											"key": "data",
+											"value": "{\"name\":\"Hoodie\",\"description\":\"Updated Description.\",\"price\":150000,\"stock\":5,\"category_id\":1}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/product/admin/update/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"product",
+										"admin",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "[GET] All Product List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/product/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Detail Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/product/list/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"list",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "[POST] Add Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYjQ1ZDQ0LTlkZjgtNDFiNy1iMDc1LWEwMzY4Y2RkOGRhOSIsIm5hbWUiOiJBZG1pbiIsInBob3RvX3Byb2ZpbGUiOm51bGwsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwOTAwMjYzNSwiZXhwIjoxNzA5MDg5MDM1fQ.J4rpTSMeelsOw1CjZjzoZhjyw_bz0L6U99S9gMecmRo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Jacket\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/category/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"admin",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET} All List Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/category/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE] Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/category/admin/delete/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"admin",
+								"delete",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PATCH] Update Category Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Pants\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/category/admin/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"admin",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "[GET] All User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PATCH] Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"\",\r\n    \"contact\":\"01823817238\",\r\n    \"address\":\"\",\r\n    \"subdistrict\":\"\",\r\n    \"city\":\"\",\r\n    \"province\":\"DKI Jakarta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/update/cdf5c127-71d2-403b-a07c-c540cabe1670",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"update",
+								"cdf5c127-71d2-403b-a07c-c540cabe1670"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE] Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1OTc4MGY5LWJkMWMtNDgwNC1iZTIxLTQzYTUyOTlkNzZiMyIsInJvbGVfaWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwODQ4MjgwMywiZXhwIjoxNzA4NTY5MjAzfQ.Boq2PGaB94OIBJHFvgfdPabiLUFS-Zho8qzHR5niifU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/admin/delete/c2e7266c-b68a-49db-9fa9-7821d34f3a9b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"delete",
+								"c2e7266c-b68a-49db-9fa9-7821d34f3a9b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PATCH] Change Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTRlMzkwLWYyZTYtNDZhYi05ZjkxLTZjZjkzMThlODAxYiIsIm5hbWUiOiJNdWhhbW1hZCBSYWloYW4gQXJyYWZpIiwicGhvdG9fcHJvZmlsZSI6bnVsbCwicm9sZV9pZCI6Miwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MDk0NjIxODksImV4cCI6MTcwOTU0ODU4OX0.2MT5YF5wFtbyot0cf0fmHsXqjlCFJCIlGgnye8NxYhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/C:/Users/M RAIHAN ARRAFI/Downloads/1-intro-photo-final.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/change-image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"change-image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "[POST] Add to Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY3NzMxZDUxLTFmNTAtNDVhMS05YTFlLTUyMzM3OTc4YmU5NyIsInJvbGVfaWQiOjIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzA4NTA3MDM3LCJleHAiOjE3MDg1OTM0Mzd9.XHsejxQBjfDh6RJty2CuJjtyaQubarw9vdHwFFQekOc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":2,\r\n    \"qty\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cart/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE] Delete Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY3NzMxZDUxLTFmNTAtNDVhMS05YTFlLTUyMzM3OTc4YmU5NyIsInJvbGVfaWQiOjIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzA4NTA3MDM3LCJleHAiOjE3MDg1OTM0Mzd9.XHsejxQBjfDh6RJty2CuJjtyaQubarw9vdHwFFQekOc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY3NzMxZDUxLTFmNTAtNDVhMS05YTFlLTUyMzM3OTc4YmU5NyIsInJvbGVfaWQiOjIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzA4NTA3MDM3LCJleHAiOjE3MDg1OTM0Mzd9.XHsejxQBjfDh6RJty2CuJjtyaQubarw9vdHwFFQekOc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Raja Ongkir",
+			"item": [
+				{
+					"name": "[GET] Province",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "272925af0602e87c09ad32ab797038bb",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/rajaongkir/province",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rajaongkir",
+								"province"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] City",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "272925af0602e87c09ad32ab797038bb",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/rajaongkir/city?province_id=9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rajaongkir",
+								"city"
+							],
+							"query": [
+								{
+									"key": "province_id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Ongkir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/rajaongkir/cost?destination=22&courier=pos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rajaongkir",
+								"cost"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "22"
+								},
+								{
+									"key": "courier",
+									"value": "pos"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "[POST] Create Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZWQzNmIxLTBjMDItNDY3Mi1hYmEyLTI5YTFmNDM0NTQzNyIsIm5hbWUiOiJVc2VyIDEiLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlX2lkIjoyLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwOTA4OTEzNiwiZXhwIjoxNzA5MTc1NTM2fQ.MVOX1vV4DwsOOA_7WroVtBSfJCs3tRiU00stgAZKTNE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bolo\",\r\n    \"contact\": \"0128391231\",\r\n    \"address\": \"Jalan Cabe\",\r\n    \"province\": \"Jawa Barat\",\r\n    \"city\": \"Kota Bandung\",\r\n    \"courier\": \"jne\",\r\n    \"service\": \"Reg\",\r\n    \"cost\": 220000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transaction/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] List Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZWQzNmIxLTBjMDItNDY3Mi1hYmEyLTI5YTFmNDM0NTQzNyIsIm5hbWUiOiJVc2VyIDEiLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlX2lkIjoyLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwOTE5MTAyMywiZXhwIjoxNzA5Mjc3NDIzfQ.2GvXJUSNpjOio9Su73iqhCLYuEOZhKSeld3Mnx-83YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/transaction/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "[POST] All Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZWQzNmIxLTBjMDItNDY3Mi1hYmEyLTI5YTFmNDM0NTQzNyIsIm5hbWUiOiJVc2VyIDEiLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlX2lkIjoyLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwOTE5MTAyMywiZXhwIjoxNzA5Mjc3NDIzfQ.2GvXJUSNpjOio9Su73iqhCLYuEOZhKSeld3Mnx-83YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/wishlist/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] All Wishlist",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE] Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZWQzNmIxLTBjMDItNDY3Mi1hYmEyLTI5YTFmNDM0NTQzNyIsIm5hbWUiOiJVc2VyIDEiLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlX2lkIjoyLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwOTE5MTAyMywiZXhwIjoxNzA5Mjc3NDIzfQ.2GvXJUSNpjOio9Su73iqhCLYuEOZhKSeld3Mnx-83YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/wishlist/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Wishlist by Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZWQzNmIxLTBjMDItNDY3Mi1hYmEyLTI5YTFmNDM0NTQzNyIsIm5hbWUiOiJVc2VyIDEiLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlX2lkIjoyLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwOTE5MTAyMywiZXhwIjoxNzA5Mjc3NDIzfQ.2GvXJUSNpjOio9Su73iqhCLYuEOZhKSeld3Mnx-83YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/wishlist/list/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist",
+								"list",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
