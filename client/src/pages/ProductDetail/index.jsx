@@ -7,7 +7,7 @@ import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import img from '../../../assets/image.png';
 
 import classes from './style.module.scss';
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getData, setCart } from "./action";
 import { useParams } from "react-router-dom";
@@ -15,15 +15,22 @@ import { createStructuredSelector } from "reselect";
 import { selectDetail } from "./selector";
 import toast, { Toaster } from "react-hot-toast";
 import { getDataCart } from "@pages/Cart/action";
+import { addWishlist, getWishlist, getWishlistByProduct } from "@pages/Wishlist/actions";
+import { selectToken } from "@containers/Client/selectors";
+import { jwtDecode } from "jwt-decode";
 
-const ProductDetail = ({ detail }) => {
+const ProductDetail = ({ detail, token }) => {
 
     const dispatch = useDispatch();
     const { id } = useParams();
     const [qty, setQty] = useState(1)
+    const isWishlist = useSelector((state) => state.wishlist.wishlistByProduct);
 
     useEffect(() => {
         dispatch(getData(id))
+        if (token) {
+            dispatch(getWishlistByProduct(id))
+        }
     }, []);
 
     const handleQty = (icon) => {
@@ -50,7 +57,9 @@ const ProductDetail = ({ detail }) => {
     };
 
     const addToWishlist = () => {
-        console.log('INI IWSHLIST')
+        dispatch(addWishlist({ products_id: detail?.id }, () => {
+            dispatch(getWishlistByProduct(id))
+        }))
     }
 
     return (
@@ -64,11 +73,15 @@ const ProductDetail = ({ detail }) => {
                                 {detail?.name}
                             </h3>
                             <p className={classes.price}>
-                                Rp {detail?.price.toLocaleString()}
+                                Rp {detail?.price?.toLocaleString()}
                             </p>
                         </div>
-                        <FaRegHeart onClick={addToWishlist} className={classes.buttonIcon} />
-                        {/* <FaHeart fontSize={28} className={classes.buttonIcon}/> */}
+                        {
+                            isWishlist ?
+                                <FaHeart onClick={addToWishlist} fontSize={28} className={classes.buttonIcon}/>
+                                :
+                                <FaRegHeart onClick={addToWishlist} className={classes.buttonIcon} />
+                        }
                     </div>
                     <p className={classes.description}>
                         {detail?.description}
@@ -91,11 +104,13 @@ const ProductDetail = ({ detail }) => {
 }
 
 ProductDetail.propTypes = {
-    detail: PropTypes.object
+    detail: PropTypes.object,
+    token: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
     detail: selectDetail,
+    token: selectToken
 })
 
 export default connect(mapStateToProps)(ProductDetail);

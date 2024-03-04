@@ -25,10 +25,11 @@ const createTransaction = async (req, res) => {
         const cart = JSON.parse(decryptTextPayload(data?.cart));
 
         const response = await TransactionHelper.createTransaction({ name, contact, address, province, city, courier, service, cost, cart, dataToken })
+        console.log(response, 'API TRANSACTION ')
 
         return res.send({
             message: 'Create Transaction Success',
-            response
+            response: response
         });
     } catch (error) {
         console.log([fileName, 'Create Transaction API', 'ERROR'], { info: `${error}` });

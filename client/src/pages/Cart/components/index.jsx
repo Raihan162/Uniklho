@@ -1,4 +1,4 @@
-import { MenuItem, Select } from '@mui/material';
+import { MenuItem, Select, TextField } from '@mui/material';
 import { RiDeleteBinLine } from "react-icons/ri";
 
 import img from '../../../../assets/image.png'
@@ -7,7 +7,7 @@ import classes from './style.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteCart, getDataCart } from '../action';
 
-const CardCart = ({ data, func }) => {
+const CardCart = ({ data, func, updateFunc }) => {
 
     return (
         <div className={classes.card}>
@@ -19,7 +19,7 @@ const CardCart = ({ data, func }) => {
                     </h4>
                     <p>Rp {data?.product?.price.toLocaleString()}</p>
                     <p>Total : Rp {(data?.product?.price * data?.qty).toLocaleString()}</p>
-                    <Select value={data?.qty}>
+                    <Select value={data?.qty} onChange={updateFunc}>
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
                         <MenuItem value={3}>3</MenuItem>

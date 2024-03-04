@@ -96,10 +96,84 @@ const deleteUser = async ({ id, dataToken }) => {
         console.log([fileName, 'Delete User Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
+};
+
+const profileUser = async ({ dataToken }) => {
+    try {
+        const response = await db.users.findOne({
+            where: {
+                id: dataToken?.id
+            }
+        });
+        if (!response) {
+            return Promise.reject(Boom.badRequest('Account not exist'));
+        };
+
+        return Promise.resolve(response)
+    } catch (error) {
+        console.log([fileName, 'Get Profile User Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
+};
+
+const updateProfileUser = async ({ dataToken, name, contact, address, province, city }) => {
+    try {
+        const checkUser = await db.users.findOne({
+            where: {
+                id: dataToken?.id
+            }
+        });
+        if (!checkUser) {
+            return Promise.reject(Boom.badRequest('User doesn`t exist'));
+        };
+
+        await db.users.update({
+            name: name ? name : checkUser?.name,
+            contact: contact ? contact : checkUser?.contact,
+            address: address ? address : checkUser?.address,
+            province: province ? province : checkUser?.province,
+            city: city ? city : checkUser?.city
+        }, {
+            where: {
+                id: dataToken?.id
+            }
+        });
+
+        return Promise.resolve(true);
+    } catch (error) {
+        console.log([fileName, 'Update Profile User Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
+};
+
+const changeImage = async ({ dataToken, img }) => {
+    try {
+        if (dataToken?.role_id !== 2) {
+            return Promise.reject(Boom.unauthorized('You are not authorized'))
+        };
+
+        let imageResult = await uploadToCloudinary(img?.image_url[0], 'image');
+
+        await db.users.update({
+            photo_profile: imageResult?.url
+        }, {
+            where: {
+                id: dataToken?.id
+            }
+        })
+
+        return Promise.resolve(true);
+    } catch (error) {
+        console.log([fileName, 'Change Image Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
 }
 
 module.exports = {
     getAlluser,
     updateUser,
-    deleteUser
+    deleteUser,
+    profileUser,
+    updateProfileUser,
+    changeImage
 }

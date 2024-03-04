@@ -34,14 +34,14 @@ const Register = ({ login }) => {
 
     const onSubmit = (data) => {
         const encryptData = {
-            name: encryptPayload(data.name),
-            email: encryptPayload(data.email),
-            contact: encryptPayload(data.contact),
-            password: encryptPayload(data.password),
-            address: encryptPayload(data.address),
-            subdistrict: encryptPayload(data.subdistrict),
-            city: encryptPayload(data.city),
-            province: encryptPayload(data.province)
+            name: encryptPayload(data?.name),
+            email: encryptPayload(data?.email),
+            contact: encryptPayload(data?.contact),
+            password: encryptPayload(data?.password),
+            address: encryptPayload(data?.address),
+            subdistrict: encryptPayload(data?.subdistrict),
+            city: encryptPayload(data?.city),
+            province: encryptPayload(data?.province)
         }
         dispatch(setRegister(encryptData, () => {
             dispatch(setStep(1));
@@ -63,6 +63,7 @@ const Register = ({ login }) => {
 
     const handleToLogin = () => {
         navigate('/login');
+        dispatch(setStep(1));
     };
 
     const handleStep = (data) => {

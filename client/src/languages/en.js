@@ -26,6 +26,7 @@ export default {
   action: 'Action',
   select_category: 'Select Category',
   add_image: 'Add Image',
+  add_category: 'Add Category',
 
   cancel: 'Cancel',
   add: 'Add',
@@ -71,4 +72,11 @@ export default {
 
   all_product: 'All Product',
   wishlist: 'Wishlist',
+
+  empty_transaction: 'You don`t have any transaction.',
+  empty_cart: 'Your cart is currently empty.',
+  account_info: 'Account Info',
+  change_picture: 'Change Picture',
+  cancel: 'Cancel',
+  confirm: 'Confirm'
 };

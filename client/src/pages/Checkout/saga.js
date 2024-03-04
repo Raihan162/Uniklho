@@ -45,11 +45,12 @@ function* doTransaction({ data, cb }) {
     yield put(setLoading(true));
     try {
         const response = yield call(createTransactionAPI, data);
+        console.log(response?.response, 'SAGA')
         toast.success(response?.message);
         cb && cb(response?.response);
     } catch (error) {
         yield put(setLoading(false));
-        toast.error(error?.response?.data?.message)
+        // toast.error(error?.response?.data?.message)
     }
     yield put(setLoading(false));
 };

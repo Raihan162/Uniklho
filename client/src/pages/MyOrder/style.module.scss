@@ -50,3 +50,8 @@
         width: 70%;
     }
 }
+
+.emptyTransaction {
+    @include directionY;
+    align-items: center;
+}

@@ -13,7 +13,7 @@
     }
 
     .title {
-        text-align: center;
+        text-align: left;
     }
 }
 
@@ -51,4 +51,9 @@
 
     @include directionX;
     justify-content: space-between;
+}
+
+.emptyCart {
+    @include directionY;
+    align-items: center;
 }

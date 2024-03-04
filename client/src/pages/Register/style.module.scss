@@ -3,20 +3,22 @@
 .container {
     width: 100%;
     border-radius: 10px;
+    @include directionX;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
 }
 
 .card {
     @include directionX;
     flex-direction: row-reverse;
-    // @include apply-at-lg-size {
-    // }
     width: 80%;
 
-    height: 80vh;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: min-content;
+    // position: absolute;
+    // top: 55%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
     border-radius: 10px;
 
     background-image: url(../../../assets/bgRegister.jpg);

@@ -24,7 +24,7 @@ const Home = ({ product }) => {
     <div className={classes.container}>
       <div className={classes.allProduct}>
         <h2>
-          All Product
+          <FormattedMessage id="all_product" />
         </h2>
         <div className={classes.containerCard}>
           {

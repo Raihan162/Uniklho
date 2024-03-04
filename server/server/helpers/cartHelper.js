@@ -98,13 +98,13 @@ const getCart = async ({ dataToken }) => {
                         }
                     },
                     attributes: {
-                        exclude: ['id', 'createdAt', 'updatedAt']
+                        exclude: ['createdAt', 'updatedAt']
                     }
                 },
                 {
                     model: db.users,
                     attributes: {
-                        exclude: ['id', 'password', 'createdAt', 'updatedAt']
+                        exclude: ['password', 'createdAt', 'updatedAt']
                     }
                 }
             ]
@@ -115,10 +115,47 @@ const getCart = async ({ dataToken }) => {
         console.log([fileName, 'Get Cart Helpers', 'ERROR'], { info: `${error}` });
         return Promise.reject(GeneralHelper.errorResponse(error));
     }
+};
+
+const updateQty = async ({ dataToken, qty, product_id }) => {
+    try {
+        const checkUser = await db.users.findOne({
+            where: {
+                id: dataToken?.id
+            }
+        });
+        if (!checkUser) {
+            return Promise.reject(Boom.badRequest('User does`t exist'));
+        };
+
+        const checkQty = await db.products.findOne({
+            where: {
+                id: product_id
+            }
+        });
+        if (qty > checkQty?.stock) {
+            return Promise.reject(Boom.badRequest('Limited stock'));
+        };
+
+        await db.cart.update({
+            qty
+        }, {
+            where: {
+                product_id,
+                user_id: dataToken?.id
+            }
+        });
+        
+        return Promise.resolve(true);
+    } catch (error) {
+        console.log([fileName, 'Update Qty Cart Helpers', 'ERROR'], { info: `${error}` });
+        return Promise.reject(GeneralHelper.errorResponse(error));
+    }
 }
 
 module.exports = {
     addToCart,
     deleteCart,
-    getCart
+    getCart,
+    updateQty
 }

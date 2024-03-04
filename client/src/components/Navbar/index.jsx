@@ -74,6 +74,10 @@ const Navbar = ({ title, locale, theme, login, token, cart }) => {
     navigate('/register');
   };
 
+  const goToProfile = () => {
+    navigate('/profile');
+  };
+
   const handleClickProfile = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -186,7 +190,7 @@ const Navbar = ({ title, locale, theme, login, token, cart }) => {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                   >
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={goToProfile}>
                       <Avatar /> Profile
                     </MenuItem>
                     <MenuItem onClick={handleMyOrder}>

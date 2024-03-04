@@ -26,6 +26,7 @@ export default {
   action: 'Aksi',
   select_category: 'Pilih Kategori',
   add_image: 'Tambah Gambar',
+  add_category: 'Tambah Kategori',
 
   cancel: 'Batal',
   add: 'Tambah',
@@ -71,4 +72,11 @@ export default {
 
   all_product: 'Semua Produk',
   wishlist: 'Daftar Keinginan',
+
+  empty_transaction: 'Anda tidak memiliki transaksi',
+  empty_cart: 'Keranjang Anda saat ini kosong.',
+  account_info: 'Info Akun',
+  change_picture: 'Ganti Gambar',
+  cancel: 'Batal',
+  confirm: 'Konfirmasi'
 };

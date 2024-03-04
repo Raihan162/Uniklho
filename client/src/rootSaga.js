@@ -9,6 +9,8 @@ import cartSaga from '@pages/Cart/saga';
 import checkoutSaga from '@pages/Checkout/saga';
 import myorderSaga from '@pages/MyOrder/saga';
 import wishlistSaga from '@pages/Wishlist/saga';
+import profileSaga from '@pages/Profile/saga';
+import categorySaga from '@pages/Admin/Category/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -20,6 +22,8 @@ export default function* rootSaga() {
     cartSaga(),
     checkoutSaga(),
     myorderSaga(),
-    wishlistSaga()
+    wishlistSaga(),
+    profileSaga(),
+    categorySaga()
   ]);
 }

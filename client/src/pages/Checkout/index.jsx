@@ -60,15 +60,15 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
 
     const handleGetService = (event) => {
         const valueService = event.target.value;
-        setService((service) => ({
-            ...service,
-            cost: serviceCourier? serviceCourier : []
-        }));
         setInformation((information) => ({
             ...information,
             courier: valueService
         }));
         dispatch(getDataService(service.city_id, valueService));
+        setService((service) => ({
+            ...service,
+            cost: serviceCourier
+        }));
     }
 
     const onSubmit = () => {
@@ -82,6 +82,7 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
         const cost = encryptPayload(information?.cost);
         const cart = encryptPayload(information?.cart);
         dispatch(setTransaction({ name, contact, address, province,  city, courier, service, cost, cart}, ({token,transID}) => {
+            console.log({token,transID})
             window.snap.pay(token, {
                 onSuccess: function(result){
                     toast.success('Transaction success')
@@ -122,6 +123,7 @@ const Checkout = ({ province, city, serviceCourier, cart }) => {
                   }))
                 },
                 onError: function(result){
+                    toast.error('Error');
                 },
                 onClose: function(){
                     toast.error('Transaction failed')

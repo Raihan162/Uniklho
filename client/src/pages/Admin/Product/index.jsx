@@ -4,26 +4,41 @@ import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import { connect, useDispatch } from 'react-redux';
 
 import { useEffect, useState } from 'react';
-import { getCategory, getProduct } from './action';
+import { deleteProduct, getCategory, getProduct } from './action';
 import PropTypes from 'prop-types';
 
 import classes from './style.module.scss';
 import { createStructuredSelector } from 'reselect';
 import { selectCategory, selectProduct } from './selector';
 import Modal from './components/Modal';
+import { selectToken } from '@containers/Client/selectors';
+import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
-const Product = ({ product, category }) => {
+const Product = ({ product, category, token }) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const decodeToken = jwtDecode(token);
 
     const handleModal = () => {
         setOpen(!open)
     }
 
+    const handleDeleteProduct = (id) => {
+        dispatch(deleteProduct(id, () => {
+            dispatch(getProduct())
+        }))
+    }
+
     useEffect(() => {
         dispatch(getProduct());
         dispatch(getCategory());
+        if (decodeToken?.role !== 'Admin') {
+            navigate('/')
+        }
     }, []);
 
     return (
@@ -39,7 +54,7 @@ const Product = ({ product, category }) => {
                 </Button>
             </div>
             {open ?
-                <Modal handleModal={handleModal} open={open} category={category} />
+                <Modal handleModal={handleModal} open={open} setOpen={setOpen} category={category} />
                 :
                 null}
 
@@ -61,13 +76,13 @@ const Product = ({ product, category }) => {
                         <TableCell width={50}>
                             <FormattedMessage id='product_stock' />
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell width={150}>
                             <FormattedMessage id='product_price' />
                         </TableCell>
                         <TableCell width={150}>
                             <FormattedMessage id='product_category' />
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell width={150}>
                             <FormattedMessage id='action' />
                         </TableCell>
                     </TableRow>
@@ -94,7 +109,7 @@ const Product = ({ product, category }) => {
                                             {value?.stock}
                                         </TableCell>
                                         <TableCell>
-                                            {value?.price}
+                                            Rp {value?.price?.toLocaleString()}
                                         </TableCell>
                                         <TableCell>
                                             {value?.category?.name}
@@ -103,7 +118,7 @@ const Product = ({ product, category }) => {
                                             <button className={classes.buttonEdit}>
                                                 <MdOutlineEdit />
                                             </button>
-                                            <button className={classes.buttonDel}>
+                                            <button onClick={() => handleDeleteProduct(value?.id)} className={classes.buttonDel}>
                                                 <MdDeleteOutline />
                                             </button>
                                         </TableCell>
@@ -119,18 +134,21 @@ const Product = ({ product, category }) => {
                     }
                 </TableBody>
             </Table>
+            <Toaster />
         </div>
     )
 }
 
 Product.propTypes = {
     product: PropTypes.array,
-    category: PropTypes.array
+    category: PropTypes.array,
+    token: PropTypes.object
 };
 
 const mapStateToProps = createStructuredSelector({
     product: selectProduct,
-    category: selectCategory
+    category: selectCategory,
+    token: selectToken,
 })
 
 export default connect(mapStateToProps)(Product);

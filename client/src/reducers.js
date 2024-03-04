@@ -9,10 +9,12 @@ import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
 import checkoutReducer, { storedKey as storedCheckoutState } from '@pages/Checkout/reducer';
 import myorderReducer, {storedKey as storedMyOrderState } from '@pages/MyOrder/reducer';
 import wishlistReducer, { storedKey as storedWishlistState} from '@pages/Wishlist/reducer';
+import profileReducer, { storedKey as storedProfileState} from '@pages/Profile/reducer';
 
 import languageReducer from '@containers/Language/reducer';
 
 import { mapWithPersistor } from './persistence';
+import categoryReducer, { storedKey as storedCategoryState } from '@pages/Admin/Category/reducer';
 
 const storedReducers = {
   app: { reducer: appReducer, whitelist: storedAppState },
@@ -23,7 +25,9 @@ const storedReducers = {
   cart: { reducer: cartReducer, whitelist: storedCartState },
   checkout: { reducer: checkoutReducer, whitelist: storedCheckoutState },
   myOrder: { reducer: myorderReducer, whitelist: storedMyOrderState },
-  wishlist: { reducer: wishlistReducer, whitelist: storedWishlistState }
+  wishlist: { reducer: wishlistReducer, whitelist: storedWishlistState },
+  profile: { reducer: profileReducer, whitelist: storedProfileState },
+  category: { reducer: categoryReducer, whitelist: storedCategoryState }
 };
 
 const temporaryReducers = {

@@ -55,10 +55,28 @@ const getDataCart = async (req, res) => {
         console.log([fileName, 'Get Cart API', 'ERROR'], { info: `${error}` });
         return res.send(GeneralHelper.errorResponse(error));
     }
+};
+
+const updateQtyCart = async (req, res) => {
+    try {
+        console.log(req.body)
+        const { dataToken, qty, product_id } = req.body;
+
+        const response = await CartHelper.updateQty({ dataToken, qty, product_id });
+
+        return res.send({
+            message: 'Update Qty Cart Success',
+            response
+        });
+    } catch (error) {
+        console.log([fileName, 'Update Qty Cart API', 'ERROR'], { info: `${error}` });
+        return res.send(GeneralHelper.errorResponse(error));
+    }
 }
 
 Router.post('/add', Middleware.validateToken, addToCart);
 Router.delete('/delete/:id', Middleware.validateToken, deleteCart);
 Router.get('/list', Middleware.validateToken, getDataCart);
+Router.patch('/qty/update', Middleware.validateToken, updateQtyCart)
 
 module.exports = Router;

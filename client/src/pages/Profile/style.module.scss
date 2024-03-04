@@ -1,0 +1,82 @@
+@import '../../styles/base.scss';
+
+.container {
+    @include directionX;
+    justify-content: center;
+    padding: 50px;
+}
+
+.content {
+    @include directionY;
+    align-items: center;
+    gap: 50px;
+    width: 90%;
+
+    @include apply-at-sm-size {
+        @include directionX;
+        width: 100%;
+        justify-content: center;
+        align-items: start;;
+    }
+
+    .imageContainer {
+        @include directionY;
+        gap: 20px;
+
+        .profilePicture {
+            object-fit: cover;
+            object-position: center;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+
+            @include apply-at-sm-size {
+                width: 250px;
+                height: 250px;
+            }
+            
+        }
+    }
+
+    .infoContainer {
+        @include directionY;
+        gap: 20px;
+        width: 100%;
+
+        @include apply-at-sm-size {
+            width: 50%;
+        }
+    }
+}
+
+.modalPage {
+    @include directionX;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: #e0e0e0FF;
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+    @include directionY;
+    align-items: stretch;
+    
+    .inputFile {
+        padding: 20px 10px
+    }
+
+    .buttonContainer {
+        @include directionX;
+        gap: 20px;
+
+        .cancel {
+            width: 50%;
+        }
+
+        .confirm {
+            width: 50% ;
+        }
+    }
+}

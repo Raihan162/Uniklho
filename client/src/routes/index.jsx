@@ -15,6 +15,7 @@ import Cart from '@pages/Cart';
 import Checkout from '@pages/Checkout';
 import MyOrder from '@pages/MyOrder';
 import Wishlist from '@pages/Wishlist';
+import Profile from '@pages/Profile';
 
 const routes = [
   {
@@ -64,6 +65,13 @@ const routes = [
     name: 'Wishlist',
     protected: false,
     component: Wishlist,
+    layout: MainLayout,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    protected: false,
+    component: Profile,
     layout: MainLayout,
   },
   {

@@ -6,17 +6,19 @@ const Validation = require('../helpers/validationHelper');
 const ProductHelper = require('../helpers/productHelper');
 const Middleware = require('../middleware/authMiddleware');
 const uploadMedia = require('../middleware/uploadMedia');
+const { decryptTextPayload } = require('../utils/decryptHelper');
 
 const fileName = 'server/api/product.js';
 
 const addProduct = async (req, res) => {
     try {
-        const { dataToken, data } = req.body;
+        const { dataToken } = req.body;
+        const dataProduct = req.body.data;
         const img = req.files;
-        console.log(data, '<<<<DATA');
+        console.log(decryptTextPayload(dataProduct), '<<<<DATA');
         console.log(img, '<<<<< IMG')
 
-        const { name, description, price, stock, category_id } = JSON.parse(data)
+        const { name, description, price, stock, category_id } = JSON.parse(decryptTextPayload(dataProduct))
 
         Validation.addProductValidation({ name, description, price, stock, category_id })
 

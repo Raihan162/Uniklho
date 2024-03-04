@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { addProductAction, getProduct } from '../../action';
 import encryptPayload from '@utils/encryption';
 
-const ModalProduct = ({ open, handleModal, category }) => {
+const ModalProduct = ({ open, handleModal, category, setOpen }) => {
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -32,6 +32,7 @@ const ModalProduct = ({ open, handleModal, category }) => {
         category: '-',
         image: null
     });
+    const [previewImage, setPreviewImage] = useState('');
 
     const handleNameChange = (event) => {
         setProduct({ ...product, name: event.target.value })
@@ -74,6 +75,7 @@ const ModalProduct = ({ open, handleModal, category }) => {
 
     let onImageValidation = (e) => {
         setProduct({ ...product, image: e.target.files[0] });
+        setPreviewImage(URL.createObjectURL(e.target.files[0]))
     };
 
     const addProduct = () => {
@@ -90,13 +92,14 @@ const ModalProduct = ({ open, handleModal, category }) => {
         formData.append("data", encryptPayload(JSON.stringify(dataObj)));
 
         dispatch(addProductAction(formData, () => {
-            handleModal
+            setOpen(false)
             dispatch(getProduct())
         }))
     }
 
     return (
         <Modal
+            className={classes.modal}
             open={open}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -107,7 +110,7 @@ const ModalProduct = ({ open, handleModal, category }) => {
                 </Typography>
                 <hr />
                 <div className={classes.imageContainer}>
-                    <img className={classes.imageProduct} src={defaultImage} alt="Image" />
+                    <img className={classes.imageProduct} src={previewImage ?previewImage : defaultImage} alt="Image" />
                     <input
                         onChange={onImageValidation}
                         type='file' accept="image/*" />
@@ -139,6 +142,7 @@ const ModalProduct = ({ open, handleModal, category }) => {
                                 onChange={handleDescriptionChange}
                                 className={classes.inputName}
                                 placeholder='ex: This product made by cotton.'
+                                multiline
                             />
                         </td>
                     </tr>
