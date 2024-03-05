@@ -30,6 +30,27 @@ const createTransaction = async ({ name, contact, address, province, city, couri
                 },
                 transaction: t
             });
+
+            for (let i = 0; i < cart.length; i++) {
+                const compare = await db.products.findOne({
+                    where: {
+                        id: cart[i]?.product_id
+                    },
+                    transaction: t
+                });
+                if (cart[i]?.qty > compare?.stock) {
+                    return Promise.reject(Boom.badRequest('Limited Stock'));
+                };
+
+                await db.products.update({
+                    stock: compare?.stock - cart[i]?.qty
+                }, {
+                    where: {
+                        id: cart[i]?.product_id
+                    },
+                    transaction: t
+                });
+            };
     
             const createTrans = await db.transactions.create({
                 id: idTransaction,
@@ -65,24 +86,6 @@ const createTransaction = async ({ name, contact, address, province, city, couri
                 },
                 transaction: t 
             });
-
-            for (let i = 0; i < cart.length; i++) {
-                const compare = await db.products.findOne({
-                    where: {
-                        id: cart[i]?.product_id
-                    },
-                    transaction: t
-                });
-
-                await db.products.update({
-                    stock: compare?.stock - cart[i]?.qty
-                }, {
-                    where: {
-                        id: cart[i]?.product_id
-                    },
-                    transaction: t
-                });
-            }
     
             const getTotalPrice = () => {
                 let total_price = 0

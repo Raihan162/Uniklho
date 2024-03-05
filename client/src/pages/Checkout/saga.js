@@ -49,7 +49,7 @@ function* doTransaction({ data, cb }) {
         cb && cb(response?.response);
     } catch (error) {
         yield put(setLoading(false));
-        // toast.error(error?.response?.data?.message)
+        toast.error(error?.response?.data?.message)
     }
     yield put(setLoading(false));
 };

@@ -25,7 +25,6 @@ const createTransaction = async (req, res) => {
         const cart = JSON.parse(decryptTextPayload(data?.cart));
 
         const response = await TransactionHelper.createTransaction({ name, contact, address, province, city, courier, service, cost, cart, dataToken })
-        console.log(response, 'API TRANSACTION ')
 
         return res.send({
             message: 'Create Transaction Success',
@@ -39,7 +38,6 @@ const createTransaction = async (req, res) => {
 
 const updatePayment = async(req, res) => {
     try {
-        console.log(req.body, '<<<REQ BODY')
         const {payment_type, gross_amount, transaction_status, transaction_id, dataToken} = req.body;
 
         const response = await TransactionHelper.updatePayment({payment_type, gross_amount, transaction_status, transaction_id, dataToken});
