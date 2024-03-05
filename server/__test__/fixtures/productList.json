@@ -1,0 +1,145 @@
+[
+    {
+        "id": 1,
+        "name": "T-Shirt 2",
+        "description": "T-shirts in lightweight cotton jersey with a V-neck and a straight-cut hem. Slim fit that hugs the contours of your body, creating a fitted silhouette.",
+        "stock": 0,
+        "price": 320000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709003038/image/mw4eif2pql0iiwecsl9m.jpg",
+        "image_public_id": "image/mw4eif2pql0iiwecsl9m",
+        "category_id": 1,
+        "category": {
+            "name": "T-Shirt"
+        }
+    },
+    {
+        "id": 2,
+        "name": "T-Shirt 3",
+        "description": "T-shirts in lightweight cotton jersey with a V-neck and a straight-cut hem. Slim fit that hugs the contours of your body, creating a fitted silhouette.",
+        "stock": 3,
+        "price": 320000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709003054/image/er8rauwsrol16dyfhej6.jpg",
+        "image_public_id": "image/er8rauwsrol16dyfhej6",
+        "category_id": 1,
+        "category": {
+            "name": "T-Shirt"
+        }
+    },
+    {
+        "id": 11,
+        "name": "Sweatshirt",
+        "description": "Top in midweight cotton sweatshirt fabric with a round, rib-trimmed neckline, long sleeves and wide ribbing at the cuffs and hem. Regular fit for comfortable wear and a classic silhouette.",
+        "stock": 8,
+        "price": 500000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709562548/image/hcqrziytqpcpt4yvy5wn.jpg",
+        "image_public_id": "image/hcqrziytqpcpt4yvy5wn",
+        "category_id": 5,
+        "category": {
+            "name": "Hoodie"
+        }
+    },
+    {
+        "id": 12,
+        "name": "7-pack socks",
+        "description": "Trainer socks in a fine-knit cotton blend with ribbed tops.",
+        "stock": 18,
+        "price": 300000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709562651/image/qud1zvynunrfehinivkp.jpg",
+        "image_public_id": "image/qud1zvynunrfehinivkp",
+        "category_id": 2,
+        "category": {
+            "name": "Pants"
+        }
+    },
+    {
+        "id": 13,
+        "name": "Loose Fit Waffled shorts",
+        "description": "Shorts in waffled, heavyweight cotton jersey with covered elastication and a concealed drawstring at the waist, a fake fly, side pockets and an open back pocket. Loose fit for a generous but not oversized silhouette.",
+        "stock": 14,
+        "price": 300000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709562727/image/ob0dmdj4ub8q23vplep1.jpg",
+        "image_public_id": "image/ob0dmdj4ub8q23vplep1",
+        "category_id": 2,
+        "category": {
+            "name": "Pants"
+        }
+    },
+    {
+        "id": 14,
+        "name": "Loose Fit Shirts",
+        "description": "Shirt in a soft cotton weave with a turn-down collar, classic front, a flap chest pocket and a yoke at the back. Long sleeves with buttoned cuffs and a sleeve placket with a link button. Rounded hem. Loose fit for a generous but not oversized silhouette.",
+        "stock": 13,
+        "price": 450000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709562860/image/szs8pfkkfzut4pufilot.jpg",
+        "image_public_id": "image/szs8pfkkfzut4pufilot",
+        "category_id": 3,
+        "category": {
+            "name": "Shirt"
+        }
+    },
+    {
+        "id": 15,
+        "name": "Slim Jeans",
+        "description": "5-pocket jeans in cotton denim with a slight stretch for good comfort. Straight leg and a slim fit from the waist through the thigh to the hem. Regular waist and a zip fly. Easily styled for sleek or sporty.",
+        "stock": 25,
+        "price": 699000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709564917/image/lynzrl4cjjfwwwwqpxqe.jpg",
+        "image_public_id": "image/lynzrl4cjjfwwwwqpxqe",
+        "category_id": 2,
+        "category": {
+            "name": "Pants"
+        }
+    },
+    {
+        "id": 16,
+        "name": "Oversized Hoodie",
+        "description": "Oversized, zip-through hoodie in sweatshirt fabric made from a cotton blend with a soft brushed inside. Drawstring hood, a zip down the front, kangaroo pockets and ribbing at the cuffs and hem.",
+        "stock": 29,
+        "price": 499000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709565043/image/yyl3elwcxsy0bd9b5u8a.jpg",
+        "image_public_id": "image/yyl3elwcxsy0bd9b5u8a",
+        "category_id": 5,
+        "category": {
+            "name": "Hoodie"
+        }
+    },
+    {
+        "id": 17,
+        "name": "Track Jacket",
+        "description": "Track jacket in windproof, water-repellent functional fabric designed to keep you dry during light showers and protect you from the wind. Relaxed fit with a stand-up collar, zip down the front with an anti-chafe chin guard and zipped front pockets for saf",
+        "stock": 50,
+        "price": 350000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709565104/image/oo8pjwrbobexfkvievuz.jpg",
+        "image_public_id": "image/oo8pjwrbobexfkvievuz",
+        "category_id": 6,
+        "category": {
+            "name": "Jacket"
+        }
+    },
+    {
+        "id": 18,
+        "name": "Relaxed Shirt",
+        "description": "Short-sleeved shirt in softly draping viscose with a printed pattern. Relaxed fit with a resort collar, French front and a yoke at the back. Open chest pocket and a straight-cut hem with a slit at each side.",
+        "stock": 19,
+        "price": 450000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709565330/image/fazqlfmalgjdri3o7vey.jpg",
+        "image_public_id": "image/fazqlfmalgjdri3o7vey",
+        "category_id": 3,
+        "category": {
+            "name": "Shirt"
+        }
+    },
+    {
+        "id": 19,
+        "name": "Oversized Fit",
+        "description": "Disney100 x H&M. In celebration of Disney's 100th anniversary, artist and former professional snowboarder Trevor Andrew has created this streetwear-inspired collection featuring new takes on some of the studio's most beloved characters. This oversized shi",
+        "stock": 9,
+        "price": 399000,
+        "image_url": "http://res.cloudinary.com/drtqkpwng/image/upload/v1709565400/image/wrf3ie7huozowlmqlzjq.jpg",
+        "image_public_id": "image/wrf3ie7huozowlmqlzjq",
+        "category_id": 3,
+        "category": {
+            "name": "Shirt"
+        }
+    }
+]

@@ -37,6 +37,8 @@ const addProduct = async (req, res) => {
 const getAllProduct = async (req, res) => {
     try {
         const response = await ProductHelper.getAllProduct();
+        console.log(response, 'INI RESPONSE')
+
         return res.send({
             message: 'Get All Product Success',
             response
