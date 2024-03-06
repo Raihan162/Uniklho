@@ -2,6 +2,35 @@
 
 Uniklho merupakan sebuah aplikasi ecommerce dimana penjual dapat memasarkan produk yang dimilikinya secara online.
 
+## Tech Stack
+- **Frontend** : React JS, Redux-Saga
+- **Backend** : Express JS, Redis, Sequelize
+- **Database** : MySql
+- **Payment Gateway** : Midtrans
+
+## Installation
+
+Install dependencies untuk server
+```bash
+  cd server
+  npm install
+```
+
+Install dependecies untuk client
+```bash
+  cd client
+  npm install
+```
+
+Migrate database
+```bash
+  npx sequelize db:migrate
+```
+
+```bash
+  npm run start
+```
+
 ## Pages
 ### Home
 Di page home ini, user dapat melihat produk yang dijual oleh pemilik toko dan user juga dapat menambahkan produk ke cart jika sudah login.
