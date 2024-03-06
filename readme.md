@@ -1,34 +1,65 @@
 # Uniklho
 
-Uniklho merupakan sebuah aplikasi ecommerce dimana penjual dapat memasarkan produk yang dimilikinya secara online.
+Uniklho merupakan sebuah aplikasi ecommerce dimana penjual dapat memasarkan produk yang dimilikinya secara online. Untuk pembayaran transaksi menggunakan payment gateway midtrans.
 
 ## Tech Stack
-- **Frontend** : React JS, Redux-Saga
-- **Backend** : Express JS, Redis, Sequelize
-- **Database** : MySql
+- **Frontend** : React JS, Redux-Saga, Material UI
+- **Backend** : Node JS, Express JS, Cloudinary
+- **Database** : MySql, Sequelize
 - **Payment Gateway** : Midtrans
+- **Data Cache** : Redis
 
 ## Installation
-
-Install dependencies untuk server
+Clone Uniklho project
 ```bash
-  cd server
+  git clone https://github.com/Raihan162/Uniklho.git
+```
+
+### Backend
+
+Install dependencies untuk server.
+```bash
+  cd Uniklho/server
   npm install
 ```
 
-Install dependecies untuk client
+Start the server.
 ```bash
-  cd client
+  npm start
+```
+
+Start redis.
+```bash
+  redis-server
+```
+
+Migrate database.
+```bash
+  npx sequelize-cli db:migrate
+```
+
+### Frontend
+
+Install dependecies untuk client.
+```bash
+  cd Uniklho/client
   npm install
 ```
 
-Migrate database
+Start client.
 ```bash
-  npx sequelize db:migrate
+  npm start
 ```
 
+## Running Test
+Arahkan ke direktori project
 ```bash
-  npm run start
+  cd Uniklho/server
+```
+
+Jalankan test dengan command berikut
+```bash
+  npm run test
 ```
 
 ## Pages
