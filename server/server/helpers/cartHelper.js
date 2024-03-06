@@ -65,10 +65,14 @@ const deleteCart = async ({ id, dataToken }) => {
         if (!checkCart) {
             return Promise.reject(Boom.badRequest('Cart doesn`t exist'));
         };
+        if(checkCart?.user_id !== dataToken?.id) {
+            return Promise.reject(Boom.unauthorized('Cart doesn`t belong to you'));
+        };
 
         await db.cart.destroy({
             where: {
-                id
+                id,
+                user_id: dataToken?.id
             }
         });
 
